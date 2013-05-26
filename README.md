@@ -29,4 +29,4 @@ git rm -f 会把文件从目录下删除掉，而不是从 git  的 index 里删
 ###第二季
 
 2013.05.26 vimperator/locale/en-US/intro.xml 99%
-
+2013.05.26 vimperator/locale/en-US/tutorial.xml 99%

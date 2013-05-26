@@ -13,13 +13,13 @@
 <h1 tag="tutorial">快速入门教程</h1>
 
 <html:p style="text-align: center">
-	这是快速入门教程，帮助新用户上手 &liberator.appname;。但它不是完整的参考，所以不会解释所有的特性。
+	这是快速入门教程，帮助新用户上手 &liberator.appname;。但它不是完整的参考，所以不解释所有的特性。
 </html:p>
 
 <h2 tag="modal">&liberator.appname; 的模式化界面</h2>
 
 <p>
-	&liberator.appname; 的强大，类于 Vim，来自于它的模式化界面。浏览器所处的模式不同，键就有不同的意义。&liberator.appname; 有多个模式，最重要的两个模式是<em>普通</em>模式与<em>命令行</em>模式。
+	&liberator.appname; 的强大，类于 Vim，来自它的模式化界面。浏览器所处模式不同，键就有不同的意义。&liberator.appname; 有多个模式，最重要的两个模式是<em>普通</em>模式与<em>命令行</em>模式。
 </p>
 
 <p>
@@ -37,13 +37,13 @@
 <h2 tag="getting-help">取得帮助</h2>
 
 <p>
-	Vim 是一个伟大的编辑器，但它不是一个 web 浏览器。因此，即便是 Vim 熟手，可能也需要不时查阅 &liberator.appname; 文档。&liberator.appname; 的大部分文档都可以通过 <ex>:help</ex> 命令来轻松取得。比如，你可以键入以下命令找到关于 <ex>:help</ex> 命令的帮助:
+	Vim 是一个强大的编辑器，但它不是 web 浏览器。因此，即是 Vim 熟手，可能也需要不时查阅 &liberator.appname; 文档。&liberator.appname; 的大部分文档都可以通过 <ex>:help</ex> 命令来轻松取得。比如，你可以键入以下命令找到关于 <ex>:help</ex> 命令的帮助:
 </p>
 
 <code><ex>:help :help<key name="CR"/></ex></code>
 
 <p>
-	类似的，配置选项的帮助内容也可以通过 <ex>:help '<a>option+name</a>'</ex> 命令来取得。（注意选项名两边的单引号，这是与 Vim 一致的）可以想到，所有选项的帮助信息可以通过 <ex>:help options</ex> 来取得。
+	类似的，配置选项的帮助内容也可以通过 <ex>:help '<a>option+name</a>'</ex> 命令来取得。（注意选项名两边的单引号，这与 Vim 是一致的）可以想到，所有选项的帮助信息都可以通过 <ex>:help options</ex> 来取得。
 </p>
 
 <p>
@@ -61,10 +61,10 @@
 
 <h2 tag="living-mouseless">去鼠标化</h2>
 
-<em>– 或说我怎样才能不再念叨我那80多个按钮。</em>
+<em>– 或说我怎样才能不再念叨我那80多个浏览器按钮。</em>
 
 <p>
-	&liberator.appname; 的高效性，正如启示它的传奇编辑器一样，在于用户可以保持手指在键盘上来完成绝大部分工作。虽说在某些领域，比如图形用户界面设计或一些游戏中，鼠标要更擅长，但 &liberator.appname; 认为 web 浏览器并不属于它们中的一员。不过要是你更喜欢移动这小小的啮齿动物，鼠标也是完全支持的。
+	&liberator.appname; 的高效，正如启发它的传奇编辑器一样，在于用户可以在键盘上完成绝大部分工作。虽说在某些领域，比如图形用户界面设计或一些游戏中，鼠标要更擅长，但 &liberator.appname; 认为 web 浏览器可以不属于它们。不过要是你更喜欢移动这小小的啮齿动物，鼠标也是完全支持的。
 </p>
 
 <h2 tag="keyboard-scrolling">滚动</h2>
@@ -75,16 +75,16 @@
 
 <ul>
     <li><k>j</k>/<k>k</k> –
-		向下/向上滚动一行的窗口
+		向下/向上滚动窗口，一行的距离
     </li>
     <li><k>h</k>/<k>l</k> –
 		左/右滚动窗口
     </li>
     <li><k name="Space"/>/<k name="C-b"/> –
-		向下/向上滚动一页的窗口
+		向下/向上滚动一屏的窗口
     </li>
     <li><k name="C-d"/>/<k name="C-u"/> –
-		向下/向上滚动半页的窗口
+		向下/向上滚动半屏的窗口
     </li>
 </ul>
 
@@ -124,7 +124,7 @@
 </ul>
 
 <p>
-	<ex>:tabopen <a>url</a></ex> 在新标签页中打开网页，<ex>:open</ex> 命令则在当前标签页中打开一个 URL。正常模式下，<k>t</k> 和 <k>o</k> 相应地被映射给这些命令，因此下面成双的命令结果是相当的：
+	<ex>:tabopen <a>url</a></ex> 在新标签页中打开网页，<ex>:open</ex> 命令则在当前标签页中打开一个 URL。普通模式下，<k>t</k> 和 <k>o</k> 相应地被映射给这些命令，因此下面整对的命令结果是相当的：
 </p>
 
 <code>
@@ -138,15 +138,15 @@
 <h2 tag="hints-tutorial">网页浏览的一些小提示...</h2>
 
 <p>
-	你现在可以在 &liberator.appname; 中导航了。但是等等，怎样从一个网页中<em>打开</em>一个新页面或标签页？在没有了你那带尾巴的朋友的情况下，你怎样<em>点击</em>这些链接？ 
+	你现在可以在 &liberator.appname; 中导航了。但是等等，怎样从一个网页中<em>打开</em>一个新页面或标签页？没有了你那带尾巴的朋友，你怎样<em>点击</em>这些链接？ 
 </p>
 
 <p>
-	答案是 <em>hints</em>.启用 hints 将在每个 &liberator.appname; 能找到的链接边展示一个数字。要跟踪链接，你只需要键入相应的数字，一个默认为红色方框中的白色数字。
+	答案是 <em>hints</em>.启用 hints 将在 &liberator.appname; 能找到的每个链接边展示一个数字。要跟踪链接，你只需要键入相应的数字 - 一个默认为红色方框中的白色数字。
 </p>
 
 <p>
-	对于文本，我们有其他的快捷方式；你可以键入链接中所含的部分文本，&liberator.appname; 会搜寻所有它可以找到的链接并仅 hint 出符合条件的链接，这可以进一步地缩小范围。如果你所键入的文本唯一的锚定某个链接，则 &liberator.appname; 会自动打开该链接，无需用户其他的任何输入。
+	对于文本链接，我们有其他的快捷方式；你可以键入链接中所含的部分文本，&liberator.appname; 会搜寻它可以找到的所有链接并仅提示符合条件的链接，这可以进一步地缩小范围。如果你所键入的文本唯一锚定了某个链接，则 &liberator.appname; 会自动打开该链接，无需用户其他的任何输入。
 </p>
 
 <p>
@@ -159,7 +159,7 @@
 
 <p>
 	测试下这个链接：<link topic="http://vimperator.org/">&liberator.appname; Homepage</link>。
-	使用 <k>f</k> 或 <k>F</k> 启动 QucikHint 模式来高亮显示当前所有可见链接。然后键入链接的文本。该链接可以很快地唯一锁定出，然后 &liberator.appname; 打开它。一旦你完成了上述操作，记得使用 <k name="C-o"/>（<em>History Back</em>）a或 <k>d</k>（<em>Delete Buffer</em>）返回这儿，至于用哪个键返回，则取决于你用哪个键启动的 QuickHint mode。
+	使用 <k>f</k> 或 <k>F</k> 启动 QucikHint 模式来高亮显示当前所有可见链接。然后键入链接的文本。该链接可以很快地唯一锁定出，然后 &liberator.appname; 打开它。一旦你完成了上述操作，记得使用 <k name="C-o"/>（<em>History Back</em>）或 <k>d</k>（<em>Delete Buffer</em>）返回这儿，至于用哪个键返回，则取决于你用哪个键启动的 QuickHint mode。
 </p>
 
 <h2 tag="common-issues">常见问题</h2>
@@ -171,7 +171,7 @@
 <code><ex>:open my.partial.url/fooba</ex></code>
 
 <p>
-	你可以使用下列方式退出命令行然后访问已经加载页面：
+	你可以使用下列方式退出命令行然后访问已经加载的页面：
 </p>
 
 <code><k name="Esc"/></code>
@@ -179,7 +179,7 @@
 <h2 tag="vimperatorrc">保存以备往后再用 - vimperatorrc</h2>
 
 <p>
-	一旦你根据你需要的选项，映射与命令设置好 &liberator.appname; 后，你可以希望在下次打开 &liberator.appname; 时它们仍然可用。延续 Vim 的概念，这可以通过一个 vimperatorrc 文件完成。
+	一旦你根据你的需要配置好选项，映射与命令，你可能希望在下次打开 &liberator.appname; 时它们仍然可用。延续 Vim 的概念，这通过一个 vimperatorrc 文件完成。
 </p>
 
 <p>
@@ -201,16 +201,16 @@
     </li>
     <li><ex>:qall</ex> – 退出，但<em>不</em>保存会话。
     </li>
-    <li><k>ZZ</k> – 正常模式下的映射，相当于 <ex>:xall</ex>。
+    <li><k>ZZ</k> – 普通模式下的映射，相当于 <ex>:xall</ex>。
     </li>
-    <li><k>ZQ</k> – 正常模式下的映射，相当于 <ex>:qall</ex>。
+    <li><k>ZQ</k> – 普通模式下的映射，相当于 <ex>:qall</ex>。
     </li>
 </ul>
 
 <h2 tag="whither-&liberator.host;">&liberator.host; 哪儿去了？</h2>
 
 <p>
-	你现在可能有些迷失感了。不要担心，这仍是在 &liberator.host; 下。以下是一些方法，可以让 &liberator.host; 透出 &liberator.appname;。请使用 <ex>:help</ex> 查看这些命令与映射的更多信息，这样你可以更好地应用它们。
+	你现在可能有些迷失。不要担心，这仍是在 &liberator.host; 下。以下一些方法，可以让 &liberator.host; 透出 &liberator.appname;。请使用 <ex>:help</ex> 查看这些命令与映射的更多信息，这样你可以更好地应用它们。
 </p>
 
 <ul>
@@ -221,7 +221,7 @@
 		&liberator.appname; 为书签提供一个新的界面，但从根本来说，它们仍是你的标准 &liberator.host; 书签。<ex>:bmark</ex> 会添加一个新书签，<ex>:bmarks</ex> 将会列出当前所有定义的书签。
     </li>
     <li><ex>:history</ex> –
-		正如它的名字所表述的，这个命令将 &liberator.appname; 历史记录中的所有位置显示成一个列表，有色并且可滚动、可点击。
+		正如它的名字所表述的，这个命令将 &liberator.appname; 历史记录中的所有位置显示成一个列表，上色并且可滚动、可点击。
     </li>
     <li><ex>:emenu</ex> –
 		通过 &liberator.appname; 命令行访问 &liberator.host; 菜单。
