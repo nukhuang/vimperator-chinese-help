@@ -13,31 +13,31 @@
 <h1 tag="tutorial">快速入门教程</h1>
 
 <html:p style="text-align: center">
-	这是快速入门教程，帮助新用户上手 &liberator.appname;。它并非完整的参考，并不解释所有的特性。
+	这是快速入门教程，帮助新用户上手 &liberator.appname;。但它不是完整的参考，所以不会解释所有的特性。
 </html:p>
 
-<h2 tag="modal">&liberator.appname; 的模式界面</h2>
+<h2 tag="modal">&liberator.appname; 的模式化界面</h2>
 
 <p>
-	&liberator.appname; 的强大，类于 Vim，来自于它的模式界面。浏览器所处的模式不同，键就有不同的意义。&liberator.appname; 有多个模式，两个最重要的模式是<em>正常</em>模式与<em>命令行</em>模式。
+	&liberator.appname; 的强大，类于 Vim，来自于它的模式化界面。浏览器所处的模式不同，键就有不同的意义。&liberator.appname; 有多个模式，最重要的两个模式是<em>普通</em>模式与<em>命令行</em>模式。
 </p>
 
 <p>
-	&liberator.appname; 启动时，默认处于正常模式。这也将是费上你最多时间的地方。
+	&liberator.appname; 启动后，默认处于普通模式。这也将是你大部分时间要接触的模式。
 </p>
 
 <p>
-	&liberator.appname; 的另一个核心模式，命令行模式，可以在正常模式下键入 <k>:</k>(冒号)进入。你将会经常看到以 <k>:</k> 开头的 &liberator.appname; 命令，指示着后来所跟的是一个命令。
+	&liberator.appname; 的另一个核心模式，命令行模式，可以在普通模式下键入 <k>:</k>(冒号)进入。你会经常看到以 <k>:</k> 开头的 &liberator.appname; 命令，表示后面所跟的是一个命令。
 </p>
 
 <p>
-	要从命令行模式返回正常模式，请按 <k name="Esc"/> 键。在 &liberator.appname; 里，大部分其他模式都可以通过按 <k name="Esc"/> 键返回正常模式。
+	要从命令行模式返回普通模式，请按 <k name="Esc"/> 键。在 &liberator.appname; 中，大部分其他模式都可以通过按 <k name="Esc"/> 键返回普通模式。
 </p>
 
 <h2 tag="getting-help">取得帮助</h2>
 
 <p>
-	Vim 是一个伟大的编辑器，但它并非一个 web 浏览器。因此哪怕是 Vim 的熟手，也可能需要不时查阅 &liberator.appname; 文档。&liberator.appname; 的大部分文档都可以通过 <ex>:help</ex> 命令来轻松找得。比如，你可以键入以下命令找到关于 <ex>:help</ex> 命令的帮助:
+	Vim 是一个伟大的编辑器，但它不是一个 web 浏览器。因此，即便是 Vim 熟手，可能也需要不时查阅 &liberator.appname; 文档。&liberator.appname; 的大部分文档都可以通过 <ex>:help</ex> 命令来轻松取得。比如，你可以键入以下命令找到关于 <ex>:help</ex> 命令的帮助:
 </p>
 
 <code><ex>:help :help<key name="CR"/></ex></code>
@@ -59,12 +59,12 @@
 	最后，除了帮助系统外，<ex>:exusage</ex>、<ex>:viusage</ex> 和 <ex>:optionusage</ex> 也是有用的快速参考命令。
 </p>
 
-<h2 tag="living-mouseless">无鼠标化</h2>
+<h2 tag="living-mouseless">去鼠标化</h2>
 
-<em>– 或说我怎样or how I learned to stop worrying and love the 80+ buttons I already have.</em>
+<em>– 或说我怎样才能不再念叨我那80多个按钮。</em>
 
 <p>
-	&liberator.appname; 的高效性，正如它所受启示的传奇编辑器一样，在于用户可以在保持手指在键盘上时就可以完成绝大部分工作。虽说在某些领域比如图形用户界面设计或一些游戏中，鼠标显然要更擅长，但 &liberator.appname; 认为 web 浏览器不必要成为它们中的一个。不过如果你更喜欢移动这小小的啮齿动物，鼠标也当然是全然支持的。
+	&liberator.appname; 的高效性，正如启示它的传奇编辑器一样，在于用户可以保持手指在键盘上来完成绝大部分工作。虽说在某些领域，比如图形用户界面设计或一些游戏中，鼠标要更擅长，但 &liberator.appname; 认为 web 浏览器并不属于它们中的一员。不过要是你更喜欢移动这小小的啮齿动物，鼠标也是完全支持的。
 </p>
 
 <h2 tag="keyboard-scrolling">滚动</h2>
@@ -75,37 +75,37 @@
 
 <ul>
     <li><k>j</k>/<k>k</k> –
-		相应的向下/上滚动一行的窗口
+		向下/向上滚动一行的窗口
     </li>
     <li><k>h</k>/<k>l</k> –
 		左/右滚动窗口
     </li>
     <li><k name="Space"/>/<k name="C-b"/> –
-		向下/上滚动一页的窗口
+		向下/向上滚动一页的窗口
     </li>
     <li><k name="C-d"/>/<k name="C-u"/> –
-		向下/上滚动半页的窗口
+		向下/向上滚动半页的窗口
     </li>
 </ul>
 
 <p>
-	标准按键（<k name="Up"/>/<k name="Down"/>/<k name="PgUp"/>/<k name="PgDn"/>）也如所你所料的还一样工作着。
+	标准按键（<k name="Up"/>/<k name="Down"/>/<k name="PgUp"/>/<k name="PgDn"/>）也如你所期望的一样可以使用。
 </p>
 
 <h2 tag="history-navigation tab-navigation">历史记录与标签页</h2>
 
 <p>
-	类似于滚动窗口，历史记录的导航（譬如 <em>Back</em>，<em>Forward</em>） 也很简单。
+	类似于滚动窗口，在历史记录中导航（譬如 <em>Back</em>，<em>Forward</em>） 也很简单。
 </p>
 
 <ul>
     <li><k name="C-o"/>/<k name="C-i"/> –
-		相应地在当前窗口/标签页历史记录中后退/前进
+		在当前窗口/标签页的历史记录中后退/前进
     </li>
 </ul>
 
 <p>
-	对于使用标签页的 Vimmers 来说，在标签页间移动所用的按键应该很熟悉。
+	对使用标签页的 Vimmers 来说，在标签页间移动所用的按键应该很熟悉。
 </p>
 
 <ul>
