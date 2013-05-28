@@ -13,7 +13,7 @@
 
 <h2 tag="ignoring">暂时停用 &liberator.appname;</h2>
 
-&liberator.appname; 为保证 Vim 用户流畅使用，几乎重写所有的 Firefox 按键。但在某些情况下，你可能想把某击键传递给 &liberator.host; 又或网页，必须保持击键的原来意义，则可以有两个办法：
+&liberator.appname; 为保证 Vim 用户流畅地进行网页浏览，几乎重写所有的 Firefox 按键。但在某些情况下，你可能想把某击键传递给 &liberator.host; 或是网页，这就必须保持击键的原来意义，则可以有两个办法：
 
 <item>
     <tags><![CDATA[ignore-all-keys <S-Esc> <Insert>]]></tags>
@@ -32,7 +32,7 @@
     <spec>i</spec>
     <description>
         <p>
-			如果你只是需要传递一个击键给 JavaScript 表单域或是另一个扩展时，事先按下 <k>i</k> 键即可。这对于唤出被 &liberator.appname; 隐藏的 &liberator.host; 快捷键 <k name="C-o"/> 同样适用。
+			如果你只是需要传递一个击键给 JavaScript 表单域或是另一个扩展时，则预先按下 <k>i</k> 键即可。这对于唤出被 &liberator.appname; 隐藏的 &liberator.host; 快捷键 <k name="C-o"/> 同样适用。
         </p>
     </description>
 </item>
@@ -46,7 +46,7 @@
     <spec>o</spec>
     <description>
         <p>
-			在当前标签页中打开一个或多个 URLs。多个 URL 可以用 <o>urlseparator</o> 来分隔（默认为 ","，注意逗号后的空格是必须的）。第一个 URL 在当前标签页中打开，其余的 URL 在新标签页里打开。每个参数按以下顺序分析：
+			在当前标签页下打开一个或多个 URLs。多个 URL 可以用 <o>urlseparator</o> 来分隔（默认为 ","，注意逗号后的空格是必须的）。第一个 URL 在当前标签页中打开，其余的 URL 在新标签页里打开。每个参数按以下顺序分析：
         </p>
 
         <ol>
@@ -58,19 +58,18 @@
                 </ul>
             </li>
             <li>
-				 如果参数看起来像是搜索词串且第一个单词是某个搜索引擎的名称，则使用该搜索引擎搜索关键词 （<ex>:open wikipedia linus torvalds</ex> 打开 Wikipedia 上的 linus torvalds 条目）。搜索引擎的短名称由其名字自动猜出。如果你想设置一个名称，则可以通过 <ex>:dialog searchengines</ex> 来作更改。
+				 如果参数看起来像是搜索词串且第一个单词是某个搜索引擎的名称，则使用该搜索引擎搜索关键词 （<ex>:open wikipedia linus torvalds</ex> 打开 Wikipedia 上的 linus torvalds 条目）。搜索引擎的短名称由其名字自动猜出。如果你想自定义一个搜索引擎的短名称，则可以通过 <ex>:dialog searchengines</ex> 来作更改。
             </li>
             <li>
 				如果第一个词不是搜索引擎名称，则使用关键字或默认搜索引擎打开 （由 <o>defsearch</o> 来确定），比如 <ex>:open linus torvalds</ex> 打开 Google 搜索 linus torvalds。
            </li>
            <li>
-			   其他情况下直接传递给 &liberator.host; （<ex>:open www.osnews.com, www.slashdot.org</ex> 在当前页打开 OSNews 网站，在背景标签页中打开 Slashdot 网站）。
+			   其他情况下直接传递给 &liberator.host; （<ex>:open www.osnews.com, www.slashdot.org</ex> 在当前页打开 OSNews 网站，在新标签页中打开 Slashdot 网站）。
            </li>
         </ol>
 
         <p>
-            You can use <ex>:open -tags linux torvalds<k name="Tab"/></ex> to complete bookmarks with
-            tag "linux" and which contain "torvalds". Note that -tags support is only
+            你可以使用 <ex>:open -tags linux torvalds<k name="Tab"/></ex> 来过滤出带 "linux" 标签并且含有 "torvalds" 的书签条目。 Note that -tags support is only
             available for tab completion, not for the actual command.
             The items which are completed on <k name="Tab"/> are specified in the <o>complete</o>
             option.
@@ -85,7 +84,7 @@
     <spec>t</spec>
     <description>
         <p>
-			与 <ex>:open</ex> 相似，但第一个 URL 也是在新标签页中打开。与 <oa>!</oa> 一同使用时，<o>activate</o> 选项中 <em>tabopen</em> 的值被逆转。
+			与 <ex>:open</ex> 相似，但第一个 URL 跟其他一样都是在新标签页中打开。与 <oa>!</oa> 一同使用时，<o>activate</o> 选项中 <em>tabopen</em> 的值取反。
         </p>
     </description>
 </item>
@@ -96,7 +95,7 @@
     <spec>T</spec>
     <description>
         <p>
-			在命令行上显示 <ex>:tabopen</ex> 命令，并自动补入当前页面 URL。如果你要通过编辑当前页 URL地址访问其他网址，这很好用。
+			在命令行上显示 <ex>:tabopen</ex> 命令 + 当前页面 URL。如果你要通过编辑当前页 URL 地址访问其他网址，这很方便。
         </p>
     </description>
 </item>
@@ -107,7 +106,7 @@
     <spec>:<oa>count</oa>tabdu<oa>plicate</oa><oa>!</oa></spec>
     <description>
         <p>
-			复制当前标签页 <oa>count</oa> 次。<o>activate</o> 的 <em>tabopen</em> 的值可以决定所复制的最后一个标签页是否置为当前。与 <oa>!</oa> 一同使用时，<em>tabopen</em> 的值被逆转。
+			复制 <oa>count</oa> 次当前标签页。<o>activate</o> 的 <em>tabopen</em> 的值可以决定所复制的最后一个标签页是否置为当前标签页。与 <oa>!</oa> 一同使用时，<em>tabopen</em> 的值取反。
         </p>
     </description>
 </item>
@@ -118,7 +117,7 @@
     <spec>O</spec>
     <description>
         <p>
-			在命令行上显示 <ex>:open</ex> 命令并自动补入当前页面 URL。如果你在基于当前页面的 URL 地址访问其他网址，这可以用到。
+			在命令行上显示 <ex>:open</ex> 命令 + 当前页面 URL。如果你要基于当前页面的 URL 地址访问其他网址，这可以用到。
         </p>
     </description>
 </item>
@@ -150,7 +149,7 @@
     <spec>p</spec>
     <description>
         <p>
-			在当前 buffer 打开当前剪切板中的 URL 地址。你也可以选中（非 X11 用户请复制）某些非 URL 的文本，然后按 <k>p</k> 可以使用默认搜索引擎或关键字搜索（由 <o>defsearch</o> 选项设定）。
+			在当前 buffer 打开当前剪贴板中的 URL 地址。你也可以选中（非 X11 用户请复制）某些非 URL 的文本，然后按 <k>p</k> 使用默认搜索引擎或关键字搜索（由 <o>defsearch</o> 选项设定）。
         </p>
     </description>
 </item>
@@ -161,7 +160,7 @@
     <spec>P</spec>
     <description>
         <p>
-			基于当前剪切板内容在新 buffer 里打开 URL。类于 <k>p</k>，只是在新标签页中打开。
+			基于当前剪贴板内容在新 buffer 里打开 URL。类于 <k>p</k>，只是在新标签页中打开。
         </p>
         <p>
 			<o>activate</o> 选项决定是否新标签页置为当前。
@@ -175,7 +174,7 @@
     <spec>gP</spec>
     <description>
         <p>
-			基于当前剪切板内容在新 buffer 中打开 URL。类于 <k>P</k>，但反转了 <o>activate</o> 选项。
+			基于当前剪贴板内容在新 buffer 中打开 URL。类于 <k>P</k>，但反转了 <o>activate</o> 选项。
         </p>
     </description>
 </item>
@@ -221,7 +220,7 @@
     <spec>CTRL-o</spec>
     <description>
         <p>
-			在浏览器历史中后退 <oa>count</oa> 页。指定 <oa>url</oa> 的话则是后退到第一个符合的 URL 页。特殊版本 <ex>:back!</ex> 后退到浏览器历史记录的最先一个页面。
+			在浏览器历史中后退 <oa>count</oa> 页。指定 <oa>url</oa> 的话则是后退到第一个符合的 URL 页。<ex>:back!</ex> 后退到浏览器历史记录的最先一个页面。
         </p>
     </description>
 </item>
@@ -244,7 +243,7 @@
     <tags>:ju :jumps</tags>
     <spec>:ju<oa>mps</oa></spec>
     <description>
-        <p>列出所有跳转点，即当前标签页历史即会话历史记录。</p>
+        <p>列出所有跳转点，即当前标签页历史，即会话历史记录。</p>
 
         <p>
 			当前历史位置用 > 标识，跳转数字用于在 <ex>:back</ex> （0 以上数字）或 <ex>:forward</ex> （0 以下数字）中搭配使用。

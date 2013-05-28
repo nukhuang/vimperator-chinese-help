@@ -25,7 +25,7 @@
 			在完成所有初始化任务后执行一个 Ex 命令。参见 <t>intialization</t>。
         </p>
 
-        <p>本设置项可以多次使用。</p>
+        <p>本设置项可以重复使用。</p>
     </description>
 </item>
 
@@ -35,10 +35,10 @@
     <spec>++cmd <a>command</a></spec>
     <description>
         <p>
-			在任何初始化执行前执行一条 Ex 命令。参见 <t>initialization</t>。
+			在执行任何初始化前运行一条 Ex 命令。参见 <t>initialization</t>。
         </p>
 
-        <p>本设置项可以多次使用。</p>
+        <p>本设置项可以重复使用。</p>
     </description>
 </item>
 
@@ -48,7 +48,7 @@
     <spec>+u <a>rcfile</a></spec>
     <description>
         <p>
-			<a>rcfile</a> 文件用于初始化用户命令。如果 <a>rcfile</a> 值为 "NORC"，则只加载插件，其他初始化内容均不执行，即，<t>initialization</t> 中的第1、2步骤被忽略。如果 <a>rcfile</a> 值为 "NONE" 则甚至插件都不加载。
+			<a>rcfile</a> 文件用于初始化用户命令。如果 <a>rcfile</a> 值为 "NORC"，则只加载插件，其他初始化内容均不执行，即，<t>initialization</t> 中的第1、2步骤被忽略。如果 <a>rcfile</a> 值为 "NONE" 则插件也不加载。
         </p>
     </description>
 </item>
@@ -58,7 +58,7 @@
     <tags>++noplugin</tags>
     <spec>++noplugin</spec>
     <description>
-        <p>阻止插件脚本在启动时加载。参见 <o>loadplugins</o>。</p>
+        <p>阻止启动时加载插件。参见 <o>loadplugins</o>。</p>
     </description>
 </item>
 
@@ -69,13 +69,13 @@
 
 <ol>
     <li>
-	&liberator.appname; 可执行用户初始化命令。当以下任一文件被成功找到时，该文件就会被执行，然后其余位置的会被忽略。
+	&liberator.appname; 可执行用户初始化命令。当以下任一文件被成功找到时，该文件就会被执行，然后其余位置的文件会被跳过。
         <ol>
             <li tag="$&liberator.idname;_INIT">
                 <em>$&liberator.idname;_INIT</em> — 可能包含一条简单的 Ex 命令，比如 ”<ex>:source <a>file</a></ex>"。
             </li>
             <li tag="$MY_&liberator.idname;RC">
-                <em>~/_&liberator.name;rc</em> — 仅在 Windows 平台。如果文件存在，则执行其内容，并且将 <em>$MY_&liberator.idname;RC</em> 设置为其路径。
+                <em>~/_&liberator.name;rc</em> — 仅在 Windows 平台。如果文件存在，则执行其内容，并且将 <em>$MY_&liberator.idname;RC</em> 设置为其所在路径。
             </li>
             <li>
                 <em>~/.&liberator.name;rc</em> — 如果此文件存在，就执行其内容。
@@ -83,14 +83,14 @@
         </ol>
     </li>
     <li>
-		如果设置 <o>exrc</o> 并且 +u 命令没有，则当前目录下的任何 RC 文件同样被导入。
+		如果设置 <o>exrc</o> 并且不曾指定 +u 命令，则当前目录下的任何 RC 文件同样被导入。
     </li>
     <li>
 		在所有的 <o>runtimepath</o> 里搜寻 "plugin" 子目录，并加载所有未曾加载的插件。针对每个插件目录，所有的 <tt>*.{js,vimp}</tt> （包括更深层的子孙目录）文件按字母顺序加载。有下列条件时，不加载插件：
         <ul>
-            <li>设置 <o>noloadplugins</o>。</li>
-            <li>明确 ++noplugin 命令行选项。</li>
-            <li>明确 +u=NONE 命令行选项。</li>
+            <li>设置了 <o>noloadplugins</o>。</li>
+            <li>指定 ++noplugin 命令行选项。</li>
+            <li>指定 +u=NONE 命令行选项。</li>
         </ul>
 
 		任何已加载的插件将不再加载（比如早期通过 <ex>:loadplugins</ex> 命令加载的）。
@@ -113,7 +113,7 @@
     <spec>:mkv<oa>imperatorrc</oa><oa>!</oa> <oa>file</oa></spec>
     <description>
         <p>
-			保存当前的键映射与设置项到 <oa>file</oa> 文件。假如没有明确 <oa>file</oa>，则除非 <em>~/.&liberator.appname;</em> 已存在，否则写入这个文件。如果文件存在，使用 <ex>:mk&liberator.name;rc!</ex> 会覆盖文件。 
+			保存当前的键映射与设置项到 <oa>file</oa> 文件。假如没有指定 <oa>file</oa>，则除非 <em>~/.&liberator.appname;</em> 已存在，否则写入这个文件。如果文件存在，使用 <ex>:mk&liberator.name;rc!</ex> 会覆盖文件。 
         </p>
 
         <p>

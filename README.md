@@ -5,6 +5,8 @@ Vimperator 中文帮助文件
 
 git rm -f 会把文件从目录下删除掉，而不是从 git  的 index 里删除
 
+因为对 git 的用法不熟悉而误把 .hg 目录删除导致现在无法从 Google code 上更新 Vimperator 的源代码，现在只能是等全部文件翻译完再做整理。
+
 ##说明
 
 请到 downloads 文件夹里下载 vimperator-xx.xpi
@@ -28,5 +30,7 @@ git rm -f 会把文件从目录下删除掉，而不是从 git  的 index 里删
 
 ###第二季
 
-2013.05.26 vimperator/locale/en-US/intro.xml 99%
-2013.05.26 vimperator/locale/en-US/tutorial.xml 99%
+1. 2013.05.26 vimperator/locale/en-US/intro.xml 99%
+2. 2013.05.26 vimperator/locale/en-US/tutorial.xml 99%
+3. 2013.05.28 common/locale/en-US/starting.xml 99%
+4. 2013.05.28 common/locale/en-US/browsing.xml 99%
