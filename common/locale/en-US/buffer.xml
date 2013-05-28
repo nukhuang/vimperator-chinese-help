@@ -39,7 +39,7 @@
     <tags>:pa :pageinfo</tags>
     <spec>:pa<oa>geinfo</oa></spec>
     <description>
-        <p>显示许多页面信息。查阅 <ex>:help <o>pageinfo</o></ex> 帮助信息可以看到所有的可选选项。</p>
+        <p>显示各种页面信息。查阅 <ex>:help <o>pageinfo</o></ex> 帮助信息可以看到所有的可用选项。</p>
     </description>
 </item>
 
@@ -139,7 +139,7 @@
 			向左滚动页面。如果指明 <oa>count</oa>，则往左移动 <oa>count</oa> 次。
         </p>
         <p>
-			如果页面再无法往左了，则会发出提示声（除非 <o>visualbell</o> 被设定）。
+			如果页面再无法往左了，则会发出提示声（除非 <o>visualbell</o> 设定为假值）。
         </p>
     </description>
 </item>
@@ -153,7 +153,7 @@
 			向下滚动文档。如果指明 <oa>count</oa> 则向下滚动 <oa>count</oa> 次。
         </p>
         <p>
-			如果文档再无法滚动了，则会发出提示声（除非 <o>visualbell</o> 被设定）。
+			如果文档再无法滚动了，则会发出提示声（除非设定 <o>visualbell</o> ）。
         </p>
     </description>
 </item>
@@ -167,7 +167,7 @@
 			向上滚动文档。如果指明 <oa>count</oa> 则向上滚动 <oa>count</oa> 次。
         </p>
         <p>
-			如果文档再无法滚动了，则会发出提示声（除非 <o>visualbell</o> 被设定）。
+			如果文档再无法滚动了，则会发出提示声（除非设定 <o>visualbell</o>）。
         </p>
     </description>
 </item>
@@ -181,7 +181,7 @@
 			向右滚动文档。如果指明 <oa>count</oa> 则向右滚动 <oa>count</oa> 次。
         </p>
         <p>
-			如果文档再无法滚动了，则会发出提示声（除非 <o>visualbell</o> 被设定）。
+			如果文档再无法滚动了，则会发出提示声（除非设定 <o>visualbell</o>）。
         </p>
     </description>
 </item>
@@ -253,7 +253,7 @@
     <spec><oa>count</oa>gi</spec>
     <description>
         <p>
-			聚焦到使用的最后一个输入域。如果没有，则聚焦到第一个输入域。有提供 <oa>count</oa> 值则直接跳到第 <oa>count</oa> 个输入域。
+			聚焦到最后使用的一个输入域。如果没有，则聚焦到第一个输入域。有提供 <oa>count</oa> 值则直接跳到第 <oa>count</oa> 个输入域。
         </p>
     </description>
 </item>
@@ -334,7 +334,7 @@
     <tags>zm</tags>
     <spec><oa>count</oa>zm</spec>
     <description>
-        <p>更大程度将当前网页文本。记忆法：zoom more。</p>
+        <p>大程度将当前网页文本。记忆法：zoom more。</p>
     </description>
 </item>
 
@@ -352,7 +352,7 @@
     <tags>zr</tags>
     <spec><oa>count</oa>zr</spec>
     <description>
-        <p>更大比例地缩小当前网页文本。记忆法：zoom reduce。</p>
+        <p>大比例地缩小当前网页文本。记忆法：zoom reduce。</p>
     </description>
 </item>
 
@@ -372,7 +372,7 @@
     <tags>zI</tags>
     <spec><oa>count</oa>zI</spec>
     <description>
-        <p>最大程度放大当前网页。记忆法：zoom in。</p>
+        <p>大比例放大当前网页。记忆法：zoom in。</p>
     </description>
 </item>
 
@@ -381,7 +381,7 @@
     <tags>zM</tags>
     <spec><oa>count</oa>zM</spec>
     <description>
-        <p>更大程度将当前网页文本。记忆法：zoom more。</p>
+        <p>更大比例地放大当前网页文本。记忆法：zoom more。</p>
     </description>
 </item>
 
@@ -390,7 +390,7 @@
     <tags>zO</tags>
     <spec><oa>count</oa>zO</spec>
     <description>
-        <p>Reduce full zoom of current web page. Mnemonic: zoom out.</p>
+        <p>缩小当前网页。记忆法：zoom out。</p>
     </description>
 </item>
 
@@ -399,7 +399,7 @@
     <tags>zR</tags>
     <spec><oa>count</oa>zR</spec>
     <description>
-        <p>Reduce full zoom of current web page by a larger amount. Mnemonic: zoom reduce.</p>
+        <p>大比例缩小当前网页。记忆法：zoom reduce。</p>
     </description>
 </item>
 
@@ -451,7 +451,7 @@
     <spec>y</spec>
     <description>
         <p>
-			复制当前地址到剪切板。如果是在 X11 系统上运行，则地址也被复制到选择中，可能通过鼠标中键来粘贴。
+			复制当前地址到剪贴板。如果是在 X11 系统上运行，则地址也被复制到选择中，可能通过鼠标中键来粘贴。
         </p>
     </description>
 </item>
@@ -461,7 +461,7 @@
     <tags>Y</tags>
     <spec>Y</spec>
     <description>
-        <p>拷贝当前所选文本到系统剪切板。</p>
+        <p>拷贝当前所选文本到系统剪贴板。</p>
     </description>
 </item>
 
