@@ -35,3 +35,9 @@ git rm -f 会把文件从目录下删除掉，而不是从 git  的 index 里删
 3. 2013.05.28 common/locale/en-US/starting.xml 99%
 4. 2013.05.28 common/locale/en-US/browsing.xml 99%
 5. 2013.05.28 common/locale/en-US/buffer.xml 99%
+6. 2013.05.28 common/locale/en-US/cmdline.xml 99%
+7. 2013.05.28 common/locale/en-US/insert.xml 99%
+
+##TODO
+
+common/locale/en-US/options.xml
