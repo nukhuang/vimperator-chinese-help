@@ -26,14 +26,14 @@ const Tabs = Module("tabs", {
     },
 
     _updateTabCount: function () {
-        statusline.updateTabCount(true);
+        statusline.updateField("tabcount", true);
     },
 
     _onTabSelect: function () {
         // TODO: is all of that necessary?
         //       I vote no. --Kris
         modes.reset();
-        statusline.updateTabCount(true);
+        statusline.updateField("tabcount", true);
         this.updateSelectionHistory();
         if (options["focuscontent"])
             setTimeout(function () { liberator.focusContent(true); }, 10); // just make sure, that no widget has focus
@@ -61,7 +61,7 @@ const Tabs = Module("tabs", {
     /**
      * @property {number} The number of tabs in the current window.
      */
-    get count() config.tabbrowser.mTabs.length,
+    get count() config.tabbrowser.visibleTabs.length,
 
     /**
      * @property {Object} The local options store for the current tab.
@@ -115,9 +115,9 @@ const Tabs = Module("tabs", {
      */
     index: function (tab) {
         if (tab)
-            return Array.indexOf(config.tabbrowser.mTabs, tab);
+            return Array.indexOf(config.tabbrowser.visibleTabs, tab);
         else
-            return config.tabbrowser.mTabContainer.selectedIndex;
+            return Array.indexOf(config.tabbrowser.visibleTabs, config.tabbrowser.tabContainer.selectedItem);
     },
 
     // TODO: implement filter
@@ -424,22 +424,14 @@ const Tabs = Module("tabs", {
         for (let [i, ] in tabs.browsers) {
             let index = (i + first) % nbrowsers;
             let browser = config.tabbrowser.browsers[index];
-            let url, title;
-            if ("__SS_restoreState" in browser) {
-                let entry = browser.__SS_data.entries[browser.__SS_data.index - 1];
-                url = entry.url;
-                title = entry.title || url;
-            }
-            else {
-                url = browser.contentDocument.location.href;
-                title = browser.contentDocument.title;
-            }
-            title = title.toLowerCase();
+            let tab = tabs.getTab(index);
+            let url = browser.contentDocument.location.href;
+            let title = tab.label.toLowerCase();
             if (url == buffer)
-                return [tabs.getTab(index)];
+                return [tab];
 
             if (url.indexOf(buffer) >= 0 || title.indexOf(lowerBuffer) >= 0)
-                matches.push(tabs.getTab(index));
+                matches.push(tab);
         }
 
         return matches;
@@ -534,17 +526,10 @@ const Tabs = Module("tabs", {
      * Selects the alternate tab.
      */
     selectAlternateTab: function () {
-        liberator.assert(tabs.alternate != null && tabs.getTab() != tabs.alternate, "No alternate page");
+        let alternate = tabs.alternate;
+        liberator.assert(alternate != null && tabs.getTab() != alternate, "No alternate page");
 
-        // NOTE: this currently relies on v.tabs.index() returning the
-        // currently selected tab index when passed null
-        let index = tabs.index(tabs.alternate);
-
-        // TODO: since a tab close is more like a bdelete for us we
-        // should probably reopen the closed tab when a 'deleted'
-        // alternate is selected
-        liberator.assert(index >= 0, "Alternate buffer does not exist");  // TODO: This should read "Buffer N does not exist"
-        tabs.select(index, false, true);
+        config.tabbrowser.tabContainer.selectedItem = alternate;
     },
 
     // NOTE: when restarting a session FF selects the first tab and then the
@@ -713,9 +698,13 @@ const Tabs = Module("tabs", {
         commands.add(["tab"],
             "Execute a command and tell it to output in a new tab",
             function (args) {
-                liberator.forceNewTab = true;
-                liberator.execute(args.string, null, true);
-                liberator.forceNewTab = false;
+                try {
+                    liberator.forceNewTab = true;
+                    liberator.execute(args.string, null, true);
+                }
+                finally {
+                    liberator.forceNewTab = false;
+                }
             }, {
                 argCount: "+",
                 completer: function (context) completion.ex(context),
@@ -926,7 +915,7 @@ const Tabs = Module("tabs", {
                     liberator.assert(args.length <= 2 && !args.some(function (i) !/^\d+$/.test(i)),
                         "Trailing characters");
 
-                    let [winIndex, tabIndex] = args.map(parseInt);
+                    let [winIndex, tabIndex] = args.map(function(i) { return parseInt(i, 10) });
                     let win = liberator.windows[winIndex - 1];
 
                     liberator.assert(win, "Window " + winIndex + " does not exist");

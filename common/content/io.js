@@ -330,27 +330,61 @@ const IO = Module("io", {
         this._lastRunCommand = ""; // updated whenever the users runs a command with :!
         this._scriptNames = [];
 
-        this.downloadListener = {
-            onDownloadStateChange: function (state, download) {
-                if (download.state == services.get("downloads").DOWNLOAD_FINISHED) {
-                    let url   = download.source.spec;
-                    let title = download.displayName;
-                    let file  = download.targetFile.path;
-                    let size  = download.size;
+        // XXX: nsIDownloadManager is deprecated on Firefox 26
+        // FIXME: need to listen to download state ? -- teramako
+        // FIXME: need to adapt to Download.jsm instead of nsIDownloadManager
+        if (services.get("vc").compare(Application.version, "26.0a1") < 0) {
+            this.downloadListener = {
+                onDownloadStateChange: function (state, download) {
+                    if (download.state == services.get("downloads").DOWNLOAD_FINISHED) {
+                        let url   = download.source.spec;
+                        let title = download.displayName;
+                        let file  = download.targetFile.path;
+                        let size  = download.size;
 
-                    liberator.echomsg("Download of " + title + " to " + file + " finished");
-                    autocommands.trigger("DownloadPost", { url: url, title: title, file: file, size: size });
-                }
-            },
-            onStateChange:    function () {},
-            onProgressChange: function () {},
-            onSecurityChange: function () {}
-        };
-        services.get("downloads").addListener(this.downloadListener);
+                        liberator.echomsg("Download of " + title + " to " + file + " finished");
+                        autocommands.trigger("DownloadPost", { url: url, title: title, file: file, size: size });
+                    }
+                },
+                onStateChange:    function () {},
+                onProgressChange: function () {},
+                onSecurityChange: function () {}
+            };
+            services.get("downloads").addListener(this.downloadListener);
+        } else {
+            let downloadListener = this.downloadListener = {
+                onDownloadChanged: function (download) {
+                    if (download.succeeded) {
+                        let {
+                            source: { url },
+                            target: {path: file},
+                            totalBytes: size,
+                        } = download;
+                        let title = File(file).leafName;
+                        liberator.echomsg("Download of " + title + " to " + file + " finished");
+                        autocommands.trigger("DownloadPost", { url: url, title: title, file: file, size: size });
+                    }
+                },
+            };
+            let {Downloads} = Cu.import("resource://gre/modules/Downloads.jsm", {});
+            Downloads.getList(Downloads.ALL)
+                .then(function (downloadList) {
+                    downloadList.addView(downloadListener);
+                });
+        }
     },
 
     destroy: function () {
-        services.get("downloads").removeListener(this.downloadListener);
+        if (services.get("vc").compare(Application.version, "26.0a1") < 0) {
+            services.get("downloads").removeListener(this.downloadListener);
+        } else {
+            let {Downloads} = Cu.import("resource://gre/modules/Downloads.jsm", {});
+            let downloadListener = this.downloadListener;
+            Downloads.getList(Downloads.ALL)
+                .then(function (downloadList) {
+                    downloadList.removeView(downloadListener);
+                });
+        }
         for (let [, plugin] in Iterator(plugins.contexts))
             if (plugin.onUnload)
                 plugin.onUnload();
@@ -680,7 +714,7 @@ lookup:
                         if (!command) {
                             let lineNumber = i + 1;
 
-                            liberator.echoerr("Error detected while processing: " + file.path, commandline.FORCE_MULTILINE);
+                            liberator.echoerr("Error detected while processing: " + file.path);
                             commandline.echo("line " + lineNumber + ":", commandline.HL_LINENR, commandline.APPEND_TO_MESSAGES);
                             liberator.echoerr("Not an editor command: " + line);
                         }
@@ -988,7 +1022,7 @@ lookup:
             context.anchored = false;
             context.generate = function () {
                 let names = util.Array(
-                    "more1 more2 more3 more4 more5 unicode".split(" ").map(function (key)
+                    "more1 more2 more3 more4 more5 static".split(" ").map(function (key)
                         options.getPref("intl.charsetmenu.browser." + key).split(', '))
                 ).flatten().uniq();
                 let bundle = document.getElementById("liberator-charset-bundle");

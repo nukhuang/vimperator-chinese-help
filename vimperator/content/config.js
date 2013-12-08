@@ -64,7 +64,7 @@ const Config = Module("config", ConfigBase, {
         ["history",          "List your history",
             function () { window.openDialog("chrome://browser/content/history/history-panel.xul", "History", "dialog,centerscreen,width=600,height=600"); }],
         ["import",           "Import Preferences, Bookmarks, History, etc. from other browsers",
-            function () { var tmp = {}; Cu.import("resource://gre/modules/MigrationUtils.jsm", tmp); tmp.MigrationUtils.showMigrationWizard(window); } ],
+            function () { var tmp = {}; Cu.import("resource://app/modules/MigrationUtils.jsm", tmp); tmp.MigrationUtils.showMigrationWizard(window); } ],
         ["openfile",         "Open the file selector dialog",
             function () { window.BrowserOpenFileWindow(); }],
         ["pageinfo",         "Show information about the current page",
@@ -135,7 +135,11 @@ const Config = Module("config", ConfigBase, {
         tabs:       [["TabsToolbar"],     "Tab bar"]
     },
 
-    get visualbellWindow() getBrowser().mPanelContainer
+    get visualbellWindow() getBrowser().mPanelContainer,
+
+    updateTitlebar: function () {
+        config.tabbrowser.updateTitlebar();
+    },
 }, {
 }, {
     commands: function () {
@@ -209,9 +213,13 @@ const Config = Module("config", ConfigBase, {
             "Execute a command and tell it to output in a new window",
             function (args) {
                 var prop = args["-private"] ? "forceNewPrivateWindow" : "forceNewWindow";
-                liberator[prop] = true;
-                liberator.execute(args.literalArg, null, true);
-                liberator[prop] = false;
+                try {
+                    liberator[prop] = true;
+                    liberator.execute(args.literalArg, null, true);
+                }
+                finally {
+                    liberator[prop] = false;
+                }
             },
             {
                 argCount: "+",

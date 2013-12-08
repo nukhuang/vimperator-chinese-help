@@ -32,7 +32,7 @@ const History = Module("history", {
             return {
                 url: node.uri,
                 title: node.title,
-                icon: node.icon ? node.icon.spec : DEFAULT_FAVICON
+                icon: node.icon,
             };
         });
         root.containerOpen = false; // close a container after using it!
@@ -47,8 +47,7 @@ const History = Module("history", {
         obj.__iterator__ = function () util.Array.iteritems(this);
         for (let i in util.range(0, sh.count)) {
             obj[i] = { index: i, __proto__: sh.getEntryAtIndex(i, false) };
-            util.memoize(obj[i], "icon",
-                function (obj) services.get("favicon").getFaviconImageForPage(obj.URI).spec);
+            util.memoize(obj[i], "icon", function (obj) bookmarks.getFavicon(obj.URI));
         }
         return obj;
     },

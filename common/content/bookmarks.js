@@ -16,15 +16,20 @@ const Bookmarks = Module("bookmarks", {
         const historyService   = services.get("history");
         const tagging          = PlacesUtils.tagging;
 
-        this.getFavicon = getFavicon;
-        function getFavicon(uri) {
-            try {
-                return faviconService.getFaviconImageForPage(util.newURI(uri)).spec;
-            }
-            catch (e) {
-                return "";
-            }
+        function getFavicon (uri) {
+            if (typeof uri === "string")
+                uri = util.newURI(uri);
+
+            var url = null;
+            faviconService.getFaviconDataForPage(uri, function (iconURI) {
+                url = iconURI ? iconURI.spec : "";
+            });
+            while (url === null)
+                liberator.threadYield(false, true);
+
+            return url;
         }
+        this.getFavicon = getFavicon;
 
         // Fix for strange Firefox bug:
         // Error: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIObserverService.addObserver]"
@@ -65,7 +70,7 @@ const Bookmarks = Module("bookmarks", {
                 let uri = util.newURI(node.uri);
                 let keyword = bookmarksService.getKeywordForBookmark(node.itemId);
                 let tags = tagging.getTagsForURI(uri, {}) || [];
-                let bmark = Bookmark(node.uri, node.title, node.icon && node.icon.spec, keyword, tags, node.itemId);
+                let bmark = Bookmark(node.uri, node.title, node.icon, keyword, tags, node.itemId);
 
                 bookmarks.push(bmark);
                 return bmark;
@@ -94,23 +99,6 @@ const Bookmarks = Module("bookmarks", {
             };
 
             this.isBookmark = function (id) rootFolders.indexOf(self.findRoot(id)) >= 0;
-
-            // nsILivemarkService will be deprecated since Gecho version 13
-            // and a livemark item doesn't have id, so the id (gotten by bookmarkService.getBookmarkIdsForURI)
-            // is not livemark item always.
-            // TODO: remove this code when minVersion >= 13
-            this.isRegularBookmark = ("mozIAsyncLivemarks" in Ci) ?
-                function() true :
-                function findRoot(id) {
-                    var livemarkService = PlacesUtils.livemarks;
-                    do {
-                        var root = id;
-                        if (livemarkService.isLivemark(id))
-                            return false;
-                        id = bookmarksService.getFolderIdForItem(id);
-                    } while (id != bookmarksService.placesRoot && id != root);
-                    return rootFolders.indexOf(root) >= 0;
-                };
 
             // since we don't use a threaded bookmark loading (by set preload)
             // anymore, is this loading synchronization still needed? --mst
@@ -163,14 +151,14 @@ const Bookmarks = Module("bookmarks", {
                         if (self.isBookmark(itemId)) {
                             let bmark = loadBookmark(readBookmark(itemId));
                             storage.fireEvent(name, "add", bmark);
-                            statusline.updateBookmark();
+                            statusline.updateField("bookmark");
                         }
                     }
                 },
                 onItemRemoved: function onItemRemoved(itemId, folder, index) {
                     if (deleteBookmark(itemId)) {
                         storage.fireEvent(name, "remove", itemId);
-                        statusline.updateBookmark();
+                        statusline.updateField("bookmark");
                     }
                 },
                 onItemChanged: function onItemChanged(itemId, property, isAnnotation, value) {
@@ -208,7 +196,8 @@ const Bookmarks = Module("bookmarks", {
     get format() ({
         anchored: false,
         title: ["URL", "Info"],
-        keys: { text: "url", description: "title", icon: "icon", extra: "extra", tags: "tags", keyword: "keyword" },
+        keys: { text: "url", description: "title", icon: function(item) item.icon || DEFAULT_FAVICON,
+                extra: "extra", tags: "tags", keyword: "keyword" },
         process: [template.icon, template.bookmarkDescription]
     }),
 
@@ -288,21 +277,13 @@ const Bookmarks = Module("bookmarks", {
         }
     },
 
-    isBookmarked: function isBookmarked(url) {
-        try {
-            return services.get("bookmarks").getBookmarkIdsForURI(makeURI(url), {})
-                                   .some(this._cache.isRegularBookmark);
-        }
-        catch (e) {
-            return false;
-        }
-    },
+    isBookmarked: function isBookmarked(url) services.get("bookmarks").isBookmarked(util.newURI(url)),
 
     // returns number of deleted bookmarks
     remove: function remove(url) {
         try {
             let uri = util.newURI(url);
-            let bmarks = services.get("bookmarks").getBookmarkIdsForURI(uri, {}).filter(this._cache.isRegularBookmark);
+            let bmarks = services.get("bookmarks").getBookmarkIdsForURI(uri, {});
             bmarks.forEach(services.get("bookmarks").removeItem);
             return bmarks.length;
         }
@@ -675,17 +656,26 @@ const Bookmarks = Module("bookmarks", {
             function () { bookmarks.toggle(buffer.URL); });
     },
     options: function () {
+        options.add(["defsearch", "ds"],
+            "Set the default search engine",
+            "string", "google",
+            {
+                completer: function completer(context) {
+                    completion.search(context, true);
+                    context.completions = [["", "Don't perform searches by default"]].concat(context.completions);
+                }
+            });
         var browserSearch = services.get("search");
         browserSearch.init(function() {
-            options.add(["defsearch", "ds"],
-                "Set the default search engine",
-                "string", browserSearch.defaultEngine.alias || "google",
-                {
-                    completer: function completer(context) {
-                        completion.search(context, true);
-                        context.completions = [["", "Don't perform searches by default"]].concat(context.completions);
-                    }
-                });
+            var alias = browserSearch.defaultEngine.alias;
+            if (alias) {
+                let defsearch = options.get("defsearch");
+                // when already changed, it means the user had been changed in RC file
+                if (defsearch.value === defsearch.defaultValue)
+                    defsearch.value = alias
+
+                defsearch.defaultValue = alias;
+            }
         });
     },
     completion: function () {
@@ -710,7 +700,7 @@ const Bookmarks = Module("bookmarks", {
 
             context.title = ["Search Keywords"];
             context.completions = keywords.concat(engines);
-            context.keys = { text: 0, description: 1, icon: 2 };
+            context.keys = { text: 0, description: 1, icon: function(item) item[2] || DEFAULT_FAVICON };
 
             if (!space || noSuggest)
                 return;

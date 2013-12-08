@@ -690,7 +690,9 @@ const Liberator = Module("liberator", {
      */
     log: function (msg) {
         if (typeof msg == "object")
-            msg = util.objectToString(msg, false);
+            msg = Cc["@mozilla.org/feed-unescapehtml;1"]
+                    .getService(Ci.nsIScriptableUnescapeHTML)
+                    .unescape(util.objectToString(msg, false).value);
 
         services.get("console").logStringMessage(config.name.toLowerCase() + ": " + msg);
     },
@@ -1144,12 +1146,7 @@ const Liberator = Module("liberator", {
             {
                 setter: function (value) {
                     let win = document.documentElement;
-                    function updateTitle(old, current) {
-                        document.title = document.title.replace(RegExp("(.*)" + util.escapeRegex(old)), "$1" + current);
-                    }
-
                     if (liberator.has("privatebrowsing")) {
-                        liberator.log("has feature: privateBrowsing");
                         let oldValue = win.getAttribute("titlemodifier_normal");
                         let suffix = win.getAttribute("titlemodifier_privatebrowsing").substr(oldValue.length);
 
@@ -1160,15 +1157,15 @@ const Liberator = Module("liberator", {
                                   .getInterface(Ci.nsIWebNavigation)
                                   .QueryInterface(Ci.nsILoadContext)
                                   .usePrivateBrowsing) {
-                            updateTitle(oldValue + suffix, value + suffix);
                             win.setAttribute("titlemodifier", value + suffix);
-                            return value;
                         }
+                        else
+                            win.setAttribute("titlemodifier", value);
                     }
+                    else
+                        win.setAttribute("titlemodifier", value);
 
-                    updateTitle(win.getAttribute("titlemodifier"), value);
-                    win.setAttribute("titlemodifier", value);
-
+                    config.updateTitlebar();
                     return value;
                 }
             });
@@ -1634,8 +1631,8 @@ const Liberator = Module("liberator", {
                         let str = template.genericOutput("Code execution summary",
                                 xml`<table>
                                     <tr><td>Executed:</td><td align="right"><span class="times-executed">${count}</span></td><td>times</td></tr>
-                                    <tr><td>Average time:</td><td align="right"><span class="time-average">${each.toFixed(2)}</span></td><td>{eachUnits}</td></tr>
-                                    <tr><td>Total time:</td><td align="right"><span class="time-total">${total.toFixed(2)}</span></td><td>{totalUnits}</td></tr>
+                                    <tr><td>Average time:</td><td align="right"><span class="time-average">${each.toFixed(2)}</span></td><td>${eachUnits}</td></tr>
+                                    <tr><td>Total time:</td><td align="right"><span class="time-total">${total.toFixed(2)}</span></td><td>${totalUnits}</td></tr>
                                 </table>`);
                         commandline.echo(str, commandline.HL_NORMAL, commandline.FORCE_MULTILINE);
                     }

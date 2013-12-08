@@ -569,7 +569,7 @@ const Util = Module("util", {
             return String.localeCompare(a[0], b[0]);
         }
         xml["+="](string, template.map2(xml, keys.sort(compare), function (f) f[1]));
-        return color ? string : [s for each (s in string)].join("");
+        return string;
     },
 
     /**
@@ -782,12 +782,12 @@ const Util = Module("util", {
      * @see util.xmlToDom
      */
     xmlToDomForTemplate: function xmlToDomForTemplate(node, doc, nodes) {
-        var dom = doc.createDocumentFragment();
         var range = doc.createRange();
         var fragment = range.createContextualFragment(
             xml`<div xmlns:ns=${NS} xmlns:xul=${XUL} xmlns=${XHTML}>${node}</div>`.toString());
-        for (let node of fragment.firstChild.childNodes)
-            dom.appendChild(node);
+
+        range.selectNodeContents(fragment.firstChild);
+        var dom = range.extractContents();
 
         range.detach();
 
@@ -797,11 +797,48 @@ const Util = Module("util", {
         }
         return dom.childNodes.length === 1 ? dom.childNodes[0] : dom;
     },
-    domToStr: function domToStr(node) {
-        var enc=Cc["@mozilla.org/layout/documentEncoder;1?type=text/plain"].getService(Ci.nsIDocumentEncoder);
-        enc.init(node.ownerDocument, "text/html", 0);
-        enc.setNode(node);
-        return enc.encodeToString();
+    /**
+     * encoding dom
+     *
+     * @param {Node|Range|Selection|Document} node
+     * @param {String} type     example "text/plain", "text/html", "text/xml", "application/xhtml+xml" etc...
+     * @param {Number} flags    nsIDocumentEncoder.OutputXXXX
+     * @returns {String}
+     */
+    domToStr: let (Encoder = Components.Constructor("@mozilla.org/layout/documentEncoder;1?type=text/plain", "nsIDocumentEncoder", "init"))
+    function domToStr(node, type, flags) {
+        var doc, method;
+
+        if (node instanceof Document) {
+            doc = node;
+            node = null;
+            method = "setNode";
+        } else if (node instanceof Node) {
+            doc = node.ownerDocument;
+            method = "setNode";
+        } else if (node instanceof Range) {
+            doc = node.startContainer;
+            if (doc.ownerDocument) {
+                doc = doc.ownerDocument;
+            }
+            method = "setRange";
+        } else if (node instanceof Selection) {
+            // can not found document
+            if (node.rangeCount === 0) {
+                return "";
+            }
+            doc = node.getRangeAt(0).startContainer;
+            if (doc.ownerDocument) {
+                doc = doc.ownerDocument;
+            }
+            method = "setSelection";
+        } else {
+            return null;
+        }
+
+        var encoder = new Encoder(doc, type || "text/html", flags || 0);
+        encoder[method](node);
+        return encoder.encodeToString();
     },
 }, {
     // TODO: Why don't we just push all util.BuiltinType up into modules? --djk

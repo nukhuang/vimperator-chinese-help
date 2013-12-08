@@ -161,7 +161,7 @@ const Buffer = Module("buffer", {
 
     // called when the active document is scrolled
     _updateBufferPosition: function _updateBufferPosition() {
-        statusline.updateBufferPosition();
+        statusline.updateField("position");
         // modes.show();
     },
 
@@ -244,6 +244,7 @@ const Buffer = Module("buffer", {
         // for notifying the user about secure web pages
         onSecurityChange: function onSecurityChange(webProgress, request, state) {
             onSecurityChange.superapply(this, arguments);
+            statusline.updateField("ssl", state);
         },
         onStatusChange: function onStatusChange(webProgress, request, status, message) {
             onStatusChange.superapply(this, arguments);
@@ -254,9 +255,9 @@ const Buffer = Module("buffer", {
         // happens when the users switches tabs
         onLocationChange: function onLocationChange() {
             onLocationChange.superapply(this, arguments);
-            statusline.updateUrl();
-            statusline.updateBookmark();
-            statusline.updateHistory();
+            statusline.updateField("location");
+            statusline.updateField("bookmark");
+            statusline.updateField("history");
 
             // This is a bit scary but we trigger ignore mode when the new URL is in the list
             // of pages with ignored keys and then exit it on a new page but ONLY, if:
@@ -273,7 +274,7 @@ const Buffer = Module("buffer", {
             autocommands.trigger("LocationChange", { url: buffer.URL });
 
             // if this is not delayed we get the position of the old buffer
-            setTimeout(function () { statusline.updateBufferPosition(); }, 250);
+            setTimeout(function () { statusline.updateField("position"); }, 250);
         },
         // called at the very end of a page load
         asyncUpdateUI: function asyncUpdateUI() {
@@ -284,8 +285,8 @@ const Buffer = Module("buffer", {
             let ssli = options["showstatuslinks"];
             if (link && ssli) {
                 if (ssli == 1) {
-                    statusline.updateUrl("Link: " + link);
-                    statusline.updateBookmark(link);
+                    statusline.updateField("location", "Link: " + link);
+                    statusline.updateField("bookmark", link);
                 }
                 else if (ssli == 2)
                     liberator.echo("Link: " + link, commandline.DISALLOW_MULTILINE);
@@ -293,8 +294,8 @@ const Buffer = Module("buffer", {
 
             if (link == "") {
                 if (ssli == 1) {
-                    statusline.updateUrl();
-                    statusline.updateBookmark();
+                    statusline.updateField("location");
+                    statusline.updateField("bookmark");
                 }
                 else if (ssli == 2)
                     modes.show();
@@ -1009,21 +1010,24 @@ const Buffer = Module("buffer", {
     getFocusedWindow: function (win) {
         win = win || config.browser.contentWindow;
         let elem = win.document.activeElement;
-        let doc;
-        while (doc = elem.contentDocument) {
-            elem = doc.activeElement;
-        }
-        return elem.ownerDocument.defaultView;
+        if (elem) {
+            let doc;
+            while (doc = elem.contentDocument) {
+                elem = doc.activeElement;
+            }
+            return elem.ownerDocument.defaultView;
+        } else
+            return win;
     },
 
-    setZoom: function setZoom(value, fullZoom) {
+    setZoom: function setZoom(value, fullZoom, browser = config.tabbrowser.mCurrentBrowser) {
         liberator.assert(value >= Buffer.ZOOM_MIN || value <= Buffer.ZOOM_MAX,
             "Zoom value out of range (" + Buffer.ZOOM_MIN + " - " + Buffer.ZOOM_MAX + "%)");
 
         ZoomManager.useFullZoom = fullZoom;
         ZoomManager.zoom = value / 100;
         if ("FullZoom" in window)
-            FullZoom._applySettingToPref();
+            FullZoom._applyZoomToPref(browser);
         liberator.echomsg((fullZoom ? "Full" : "Text") + " zoom: " + value + "%");
     },
 
@@ -1066,7 +1070,7 @@ const Buffer = Module("buffer", {
             pos = "scrollLeft", maxPos = "scrollLeftMax", clientSize = "clientWidth";
 
         function find(elem) {
-            if (!(elem instanceof Element))
+            if (elem && !(elem instanceof Element))
                 elem = elem.parentNode;
 
             for (; elem && elem.parentNode instanceof Element; elem = elem.parentNode) {
@@ -1350,15 +1354,9 @@ const Buffer = Module("buffer", {
             return " ";
         }
         function getURLFromTab (tab) {
-            if ("linkedBrowser" in tab) {
-                if ("__SS_restoreState" in tab.linkedBrowser && "__SS_data" in tab.linkedBrowser) {
-                    if (tab.linkedBrowser.__SS_data.entries.length)
-                        return tab.linkedBrowser.__SS_data.entries.slice(-1)[0].url;
-                    else
-                        return tab.linkedBrowser.__SS_data.userTypedValue || 'about:blank';
-                } else
-                    return tab.linkedBrowser.contentDocument.location.href;
-            } else {
+            if ("linkedBrowser" in tab)
+                return tab.linkedBrowser.contentDocument.location.href;
+            else {
                 let i = config.tabbrowser.mTabContainer.getIndexOfItem(tab);
                 let info = config.tabbrowser.tabInfo[i];
                 return info.browser ?
@@ -1504,10 +1502,12 @@ const Buffer = Module("buffer", {
                 if (Editor.windowIsEditable()) {
                     if (options["insertmode"])
                         modes.set(modes.INSERT);
-                    else if (win.getSelection().toString() != "")
+                    else if (Buffer.focusedWindow.getSelection().toString() != "")
                         modes.set(modes.VISUAL, modes.TEXTAREA);
-                    else
+                    else {
+                        options.setPref("accessibility.browsewithcaret", true);
                         modes.main = modes.TEXTAREA;
+                    }
                 } else {
                     // setting this option notifies an observer which takes care of the
                     // mode setting

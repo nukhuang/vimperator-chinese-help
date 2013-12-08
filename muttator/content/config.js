@@ -123,6 +123,7 @@ const Config = Module("config", ConfigBase, {
         get mTabs() this.tabContainer.childNodes,
         get visibleTabs() Array.slice(this.mTabs),
         get mCurrentTab() this.tabContainer.selectedItem,
+        get mCurrentBrowser() this.getBrowserForSelectedTab(),
         get mStrip() this.tabStrip,
         get browsers() {
             let browsers = [];
@@ -133,6 +134,11 @@ const Config = Module("config", ConfigBase, {
             }
             return browsers;
         }
+    },
+
+    updateTitlebar: function () {
+        if (!this.isComposeWindow)
+            this.tabbrowser.setDocumentTitle(this.tabbrowser.currentTabInfo);
     },
 
     modes: [
