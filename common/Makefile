@@ -13,6 +13,7 @@ ifeq ($(LOCALE),)
 else
 	LOCALEDIR = locale/en-US locale/$(LOCALE)
 endif
+
 DOC_FILES     = $(foreach dir,$(LOCALEDIR),$(wildcard $(dir)/*.xml))
 
 # TODO: only add these file types?
