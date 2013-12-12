@@ -8,3 +8,8 @@
 
 + common/locale/en-US/
 + vimperator/locale/en-US/
+
+##进度
+
+1. vimperator/locale/en-US/intro.xml done
+2. vimperator/locale/en-US/tutorial.xml 2013.12.13 done
