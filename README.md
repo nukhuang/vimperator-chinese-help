@@ -13,3 +13,4 @@
 
 1. vimperator/locale/en-US/intro.xml done
 2. vimperator/locale/en-US/tutorial.xml 2013.12.13 done
+3. common/locale/en-US/starting.xml 2013.12.13 done
