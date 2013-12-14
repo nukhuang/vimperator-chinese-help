@@ -11,7 +11,7 @@
 <h1 tag="buffer document">Buffer</h1>
 <toc start="2"/>
 
-对于每个标签页，&liberator.appname; 都仅占据一个 buffer 对象。这通常是一个有高级特性的 (X)HTML 文档。
+&liberator.appname; 给每个标签页都生成一个 buffer 对象。这通常是一个具有高级特性的 (X)HTML 文档。
 
 <h2 tag="buffer-information">Buffer 信息</h2>
 
@@ -20,7 +20,7 @@
     <spec>&lt;C-g></spec>
     <description>
         <p>
-			输出当前文件名。也包括其他的文件信息如文件大小、最后修改日期。
+			输出当前文件名。也包括其他文件信息如文件大小、最后修改日期。
         </p>
     </description>
 </item>
@@ -30,7 +30,7 @@
     <tags><![CDATA[g<C-g>]]></tags>
     <spec>g&lt;C-g></spec>
     <description>
-        <p>输出文件信息。与 <ex>:pa<oa>geinfo</oa></ex> 一样。</p>
+        <p>输出文件信息。与 <ex>:pa<oa>geinfo</oa></ex> 作用一样。</p>
     </description>
 </item>
 
@@ -39,7 +39,7 @@
     <tags>:pa :pageinfo</tags>
     <spec>:pa<oa>geinfo</oa></spec>
     <description>
-        <p>显示各种页面信息。查阅 <ex>:help <o>pageinfo</o></ex> 帮助信息可以看到所有的可用选项。</p>
+        <p>显示各种页面信息。查阅 <ex>:help <o>pageinfo</o></ex> 帮助可以看到所有的可输出的选项。</p>
     </description>
 </item>
 
@@ -60,7 +60,7 @@
     <spec>gF</spec>
     <description>
         <p>
-			使用外部编辑器查看源代码。外部编辑器由 <o>editor</o> 选项设定。目前来说，该外部编辑器必须可以从远程 URL 下载并打开文件。
+			使用外部编辑器查看源代码。外部编辑器由 <o>editor</o> 选项设定。目前来说，该外部编辑器必须能够从远程 URL 下载并打开文件。
         </p>
     </description>
 </item>
@@ -71,21 +71,21 @@
     <spec>:vie<oa>wsource</oa><oa>!</oa> <oa>url</oa></spec>
     <description>
         <p>
-			查看当前文档的源代码。如果命令后跟随 <oa>url</oa> 则查看该 URL 地址的文档。如果还跟随 <oa>!</oa>，则使用外部编辑器打开。
+			查看当前文档的源代码。如果命令后跟着 <oa>url</oa> 则查看该 URL 地址的文档。如果还指定 <oa>!</oa>，则使用外部编辑器打开。
         </p>
     </description>
 </item>
 
 
 
-<h2 tag="motion scrolling">移动命令</h2>
+<h2 tag="motion scrolling">滚动命令</h2>
 
 <item>
     <tags>^ 0</tags>
     <spec>0</spec>
     <description>
         <p>
-			滚动到文档最左侧。不像 Vim，在这儿 <k>0</k> 和 <k>^</k> 的作用是一致的。
+			滚动文档到最左侧。不像 Vim，在这儿 <k>0</k> 和 <k>^</k> 作用是一致的。
         </p>
     </description>
 </item>
@@ -95,7 +95,7 @@
     <tags>$</tags>
     <spec>$</spec>
     <description>
-        <p>滚动到文档的最右侧。</p>
+        <p>滚动文档到最右侧。</p>
     </description>
 </item>
 
@@ -105,7 +105,7 @@
     <spec><oa>count</oa>gg</spec>
     <description>
         <p>
-			滚动到页面最顶端。如果使用 <oa>count</oa> 比如 <k>35gg</k>，则是滚动到页面 35% 位置。
+			滚动页面到最顶端。如果配合 <oa>count</oa> 使用，比如 <k>35gg</k>，则是滚动页面到35%高度的位置。
         </p>
     </description>
 </item>
@@ -116,7 +116,7 @@
     <spec><oa>count</oa>G</spec>
     <description>
         <p>
-			滚动到页面最底端。如果使用 <oa>count</oa> 比如 <k>35G</k>，则滚动到页面 35% 位置。
+			滚动页面到最底端。如果配合 <oa>count</oa> 使用，比如 <k>35G</k>，则滚动页面到35%高度的位置。
         </p>
     </description>
 </item>
@@ -126,7 +126,7 @@
     <tags>N%</tags>
     <spec><a>count</a>%</spec>
     <description>
-        <p>滚动到页面百分之 <a>count</a> 位置。</p>
+        <p>滚动页面到百分之 <a>count</a> 高度的位置。</p>
     </description>
 </item>
 
@@ -136,10 +136,10 @@
     <spec><oa>count</oa>h</spec>
     <description>
         <p>
-			向左滚动页面。如果指明 <oa>count</oa>，则往左移动 <oa>count</oa> 次。
+			向左滚动页面。如果指定 <oa>count</oa>，则往左滚动 <oa>count</oa> 次。
         </p>
         <p>
-			如果页面再无法往左了，则会发出提示声（除非 <o>visualbell</o> 设定为假值）。
+			如果页面再无法往左了，则会发出哔声（除非 <o>visualbell</o> 设定为假）。
         </p>
     </description>
 </item>
@@ -150,10 +150,10 @@
     <spec><oa>count</oa>j</spec>
     <description>
         <p>
-			向下滚动文档。如果指明 <oa>count</oa> 则向下滚动 <oa>count</oa> 次。
+			向下滚动文档。如果指定 <oa>count</oa> 则向下滚动 <oa>count</oa> 次。
         </p>
         <p>
-			如果文档再无法滚动了，则会发出提示声（除非设定 <o>visualbell</o> ）。
+			如果文档再无法滚动了，则会发出哔声（除非设定 <o>visualbell</o> 为假）。
         </p>
     </description>
 </item>
@@ -164,10 +164,10 @@
     <spec><oa>count</oa>k</spec>
     <description>
         <p>
-			向上滚动文档。如果指明 <oa>count</oa> 则向上滚动 <oa>count</oa> 次。
+			向上滚动文档。如果指定 <oa>count</oa> 则向上滚动 <oa>count</oa> 次。
         </p>
         <p>
-			如果文档再无法滚动了，则会发出提示声（除非设定 <o>visualbell</o>）。
+			如果文档再无法滚动了，则会发出哔声（除非设定 <o>visualbell</o> 为假）。
         </p>
     </description>
 </item>
@@ -178,10 +178,10 @@
     <spec><oa>count</oa>l</spec>
     <description>
         <p>
-			向右滚动文档。如果指明 <oa>count</oa> 则向右滚动 <oa>count</oa> 次。
+			向右滚动文档。如果指定 <oa>count</oa> 则向右滚动 <oa>count</oa> 次。
         </p>
         <p>
-			如果文档再无法滚动了，则会发出提示声（除非设定 <o>visualbell</o>）。
+			如果文档再无法滚动了，则会发出哔声（除非设定 <o>visualbell</o> 为假）。
         </p>
     </description>
 </item>
@@ -228,7 +228,7 @@
 </item>
 
 
-<h2 tag="jumping">跳转到元素位置</h2>
+<h2 tag="jumping">跳到元素上</h2>
 
 <item>
     <tags><![CDATA[<Tab>]]></tags>
@@ -253,7 +253,7 @@
     <spec><oa>count</oa>gi</spec>
     <description>
         <p>
-			聚焦到最后使用的一个输入域。如果没有，则聚焦到第一个输入域。有提供 <oa>count</oa> 值则直接跳到第 <oa>count</oa> 个输入域。
+			聚焦到最后使用的一个输入域。如果没有，则聚焦到第一个输入域。提供 <oa>count</oa> 值则直接跳到第 <oa>count</oa> 个输入域。
         </p>
     </description>
 </item>
@@ -264,7 +264,7 @@
     <spec><oa>count</oa>]f</spec>
     <description>
         <p>
-			聚焦到下一个框架。<oa>count</oa> 表示将键盘焦点移到按顺序排列的第 <oa>count</oa> 个框架。新聚焦的框架以红色短暂标示，并不包围起来。
+			聚焦到下一个框架。<oa>count</oa> 表示将键盘焦点传给按顺序排列的第 <oa>count</oa> 个框架。新聚焦的框架以红色短暂标示，并不包围起来。
         </p>
     </description>
 </item>
@@ -275,7 +275,7 @@
     <spec><oa>count</oa>[f</spec>
     <description>
         <p>
-			聚焦到上一个框架。<oa>count</oa> 表示将键盘焦点移到按顺序排列的前面第 <oa>count</oa> 个框架。新聚焦的框架以红色短暂标示，并不包围起来。
+			聚焦到上一个框架。<oa>count</oa> 表示将键盘焦点传给前面第 <oa>count</oa> 个框架。新聚焦的框架以红色短暂标示，并不包围起来。
         </p>
     </description>
 </item>
@@ -286,7 +286,7 @@
     <spec><oa>count</oa>]]</spec>
     <description>
         <p>
-			跟踪文字为 <str>next</str> 或 <str>></str> 的链接。在浏览论坛或文档时非常有用。可以改变 <o>nextpattern</o> 值来修改其行为。它也同时跟踪着文件间的关系。
+			跟踪文字为 <str>next</str> 或 <str>></str> 的链接。在浏览论坛或文档时非常有用。可以改变 <o>nextpattern</o> 值来修改其行为。它也同时跟踪文件间的关系。
         </p>
     </description>
 </item>
@@ -297,7 +297,7 @@
     <spec><oa>count</oa>[[</spec>
     <description>
         <p>
-			跟踪文字为 <str>prev</str> 或 <str>&lt;</str> 的链接。在浏览论坛或文档时非常有用。可以改变 <o>previouspattern</o> 值来修改其行为。它也同时跟踪着文件间的关系。
+			跟踪文字为 <str>prev</str> 或 <str>&lt;</str> 的链接。在浏览论坛或文档时非常有用。可以改变 <o>previouspattern</o> 值来修改其行为。它也同时跟踪文件间的关系。
         </p>
     </description>
 </item>
@@ -307,10 +307,10 @@
 
 缩放命令取决于两个属性 -- 一个缩放范围，及缩放范围内的一系列取值。
 
-页面缩放的绝对值限定在设定的缩放范围内（默认：30%--300%）的某个值。<k>zi</k>/<k>zo</k> 及其他相似命令会使用到缩放的标准取值来逐步改变缩放值。默认的缩放标准取值为 30%, 50%, 67%, 80%, 90%, 100%, 110%, 120%, 133%, 150%,
+页面缩放的绝对值限定在设定的缩放范围内（默认：30%--300%）的某个值。<k>zi</k>/<k>zo</k> 及其他相似命令会用到缩放的标准取值来逐步改变缩放值。默认的缩放标准取值为 30%, 50%, 67%, 80%, 90%, 100%, 110%, 120%, 133%, 150%,
 170%, 200%, 240%, 300%。
 
-可用的缩放范围可以通过下列 &liberator.host; 选项改变：
+可用的缩放范围可以通过以下 &liberator.host; 选项改变：
 <link topic="http://kb.mozillazine.org/Zoom.minPercent">'zoom.minPercent'</link> 和
 <link topic="http://kb.mozillazine.org/Zoom.maxPercent">'zoom.maxPercent'</link> 
 。 缩放的标准则可以通过
@@ -325,7 +325,7 @@
     <tags>+ zi</tags>
     <spec><oa>count</oa>zi</spec>
     <description>
-        <p>放大当前页面的文本。记忆法：zoom in。</p>
+        <p>放大当前页面文本。记忆法：zoom in。</p>
     </description>
 </item>
 
@@ -334,7 +334,7 @@
     <tags>zm</tags>
     <spec><oa>count</oa>zm</spec>
     <description>
-        <p>大程度将当前网页文本。记忆法：zoom more。</p>
+        <p>大比例放大当前网页文本。记忆法：zoom more。</p>
     </description>
 </item>
 
@@ -352,7 +352,7 @@
     <tags>zr</tags>
     <spec><oa>count</oa>zr</spec>
     <description>
-        <p>大比例地缩小当前网页文本。记忆法：zoom reduce。</p>
+        <p>大比例缩小当前网页文本。记忆法：zoom reduce。</p>
     </description>
 </item>
 
@@ -362,7 +362,7 @@
     <spec><oa>count</oa>zz</spec>
     <description>
         <p>
-			设置当前网页的文本缩放值。缩放值可以取 30% 到 300% 之间，如果忽略，则重置为 100%.
+			设置当前网页的文本缩放比例。缩放比例可以取 30% 到 300% 之间，如果不提供，则重置页面比例为 100%。
         </p>
     </description>
 </item>
@@ -372,7 +372,7 @@
     <tags>zI</tags>
     <spec><oa>count</oa>zI</spec>
     <description>
-        <p>大比例放大当前网页。记忆法：zoom in。</p>
+        <p>放大当前网页。记忆法：zoom in。</p>
     </description>
 </item>
 
@@ -381,7 +381,7 @@
     <tags>zM</tags>
     <spec><oa>count</oa>zM</spec>
     <description>
-        <p>更大比例地放大当前网页文本。记忆法：zoom more。</p>
+        <p>大比例放大当前网页。记忆法：zoom more。</p>
     </description>
 </item>
 
@@ -409,7 +409,7 @@
     <spec><oa>count</oa>zZ</spec>
     <description>
         <p>
-			将当前网页放到最大。缩放值可以取 30% 与 300% 间。如果忽略，则重置为 100%.
+			设置当前网页缩放比例。缩放比例可以取 30% 与 300% 间。如果不提供，则重置页面比例为 100%.
         </p>
     </description>
 </item>
@@ -444,14 +444,14 @@
 
 <h2 tag="copying yanking">拷贝文本</h2>
 
-当在 X11 系统里运行时，以下命令不仅将文本拷贝到剪切板，还复制到 X11 选择中，这样你就可以通过鼠标中键粘贴内容：
+当在 X11 系统里运行时，以下命令不仅将文本拷贝到剪切板，还复制到 X11 选择，这样你就可以通过鼠标中键粘贴内容：
 
 <item>
     <tags>y</tags>
     <spec>y</spec>
     <description>
         <p>
-			复制当前地址到剪贴板。如果是在 X11 系统上运行，则地址也被复制到选择中，可能通过鼠标中键来粘贴。
+			复制当前地址到剪贴板。如果是在 X11 系统上运行，则地址也被复制到选择中，接着可以通过鼠标中键来粘贴。
         </p>
     </description>
 </item>
@@ -466,16 +466,16 @@
 </item>
 
 
-<h2 tag="alternate-stylesheet">可替换样式表</h2>
+<h2 tag="alternate-stylesheet">可选样式表</h2>
 
-页面作者可以为一个 HTML 文档设置可替换样式表。用户就可以在这些样式表间切换，选择他们最喜欢的。
+页面作者可以为一个 HTML 文档设置可选样式表。用户就可以在这些样式表间切换，选择他们最喜欢的。
 
 <item>
     <tags>:pagest :pagestyle</tags>
     <spec>:pagest<oa>yle</oa> <oa>stylesheet</oa></spec>
     <description>
         <p>
-			选择要应用的作者样式表。如果不指出 <oa>stylesheet</oa> 则使用默认样式表。
+			选择要应用的作者样式表。如果不指明 <oa>stylesheet</oa> 则使用默认样式表。
         </p>
 
         <p>通过设置 <o>usermode</o> 选项可以移除所有作者样式。</p>
