@@ -22,11 +22,6 @@
 <spec>:ignorekeys <oa>sub-command</oa></spec>
 <description>
     <p>
-        Always pass all (or most) keys to the underlying web page (or &liberator.host;) when
-        the current URL matches a specific filter.
-        If the <oa>sub-command</oa> is not specified, <k>:ignorekeys</k> lists
-        all currently affected sites.  The list of ignored pages is
-        automatically saved to disc, so it can persist across restarts.
 		在当前 URL 匹配某特定过滤规则时，始终将所有(或大部分的)键击传递给当前页面或 &liberator.host;。
 		如果 <oa>sub-command</oa> 不曾指定，则 <k>:ignorekeys</k> 列出目下所有被影响的站点。忽略页面的清单将自动保存到硬盘上，这样即便是重启了，规则也仍在。
     </p>
@@ -38,10 +33,6 @@
             <spec>add <oa>-except=key1,key2,...</oa> <a>url-regexp</a></spec>
             <description>
                 <p>
-                    Add a new URL (anyone matching the <a>url-regexp</a> regular expression
-                    to the list of sites which automatically turn on IGNORE ALL KEYS mode.
-                    If <oa>-except</oa> is specified, allow those specified keys to still be handled
-                    by &liberator.appname;.
 					添加一个匹配 <a>url-regexp</a> 正则表达规则的新 URL 到站点列表，该列表里的站点将自动开启 IGNORE ALL KEYS 模式。
 					如果指定 <oa>-except</oa>，则允许这些指定的键仍由 &liberator.appname; 接收。
                 </p>
