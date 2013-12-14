@@ -318,7 +318,7 @@
 选项来更改。
 
 <note>
-    'toolkit.ZoomManager.zoomLevels' 只能取为 0 和 1 间的一列值，不能是百分数。
+    'toolkit.ZoomManager.zoomLevels' 只能取为 0 和 1 间的某个值，不能是百分数。
 </note>
 
 <item>

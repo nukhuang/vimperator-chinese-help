@@ -18,3 +18,5 @@
 4. vimperator/locale/en-US/browsing.xml 2013.12.13 done
 5. common/locale/en-US/browsing.xml 2013.12.14 done
 6. common/locale/en-US/buffer.xml 2013.12.14 done
+7. common/locale/en-US/cmdline.xml 2013.12.14 done
+8. common/locale/en-US/insert.xml 2013.12.14 done

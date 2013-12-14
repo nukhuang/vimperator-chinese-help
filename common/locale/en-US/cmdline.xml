@@ -11,7 +11,7 @@
 <h1 tag="Command-line-mode Command-line mode-cmdline">命令行模式</h1>
 <toc start="2"/>
 
-命令行模式用于输入 Ex 命令（<k>:</k>）以及文本搜索（<k>/</k> 和 <k>?</k>）。
+命令行模式用于执行 Ex 命令（<k>:</k>）及文本搜索（<k>/</k> 和 <k>?</k>）。
 
 <item>
     <tags>:</tags>
@@ -40,7 +40,7 @@
     <tags><![CDATA[c_<C-]>]]></tags>
     <spec>&lt;C-]></spec>
     <description>
-        <p>扩展命令行下的缩略词。</p>
+        <p>展开命令行下的缩略词。</p>
     </description>
 </item>
 
@@ -50,7 +50,7 @@
     <spec>&lt;Up></spec>
     <description>
         <p>
-			从符合当前命令行的历史列表中召回上一个命令。
+			从当前命令行的历史列表中召回上一个命令。
         </p>
     </description>
 </item>
@@ -61,7 +61,7 @@
     <spec>&lt;Down></spec>
     <description>
         <p>
-			从符合当前命令行的历史列表中召回下一个命令。
+			从当前命令行的历史列表中召回下一个命令。
         </p>
     </description>
 </item>
@@ -87,14 +87,14 @@
 </item>
 
 
-<h2 tag="cmdline-completion">命令行补齐</h2>
+<h2 tag="cmdline-completion">命令行补全</h2>
 
 <item>
     <tags><![CDATA[c_<Tab>]]></tags>
     <spec>&lt;Tab></spec>
     <description>
         <p>
-			根据 <o>wildmode</o> 选项中设定的行为来补齐光标前的单词。如果 <o>wildmode</o> 中包含 "list" 并且有多个符合项则打开补齐菜单窗口。
+			根据 <o>wildmode</o> 选项设定的行为来补全光标前的单词。如果 <o>wildmode</o> 中包含 "list" 并且有多个符合条件的项，则打开补全菜单窗口。
         </p>
     </description>
 </item>
@@ -104,7 +104,7 @@
     <tags><![CDATA[c_<S-Tab>]]></tags>
     <spec>&lt;S-Tab></spec>
     <description>
-        <p>当 <o>wildmode</o> 选项中包含 "full" 时补齐为前一个完全符合的项。</p>
+        <p>当 <o>wildmode</o> 选项中包含 "full" 时补全为前一个完全匹配项。</p>
     </description>
 </item>
 
