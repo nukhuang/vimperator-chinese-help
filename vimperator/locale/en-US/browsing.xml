@@ -12,9 +12,7 @@
 <spec>I</spec>
 <description>
     <p>
-        Opens an <k>:ignorekeys add </k> command to quickly add the current host or URL to the
-        list of pages with ignored keys.
-		打开一个 <k>:ignorekeys add </k> 命令，用来快速添加当前主机或 URL 到页面清单中，这些页面都忽略了某些按键。
+		打开 <k>:ignorekeys add </k> 命令，用来给页面快速添加某些忽略按键。
     </p>
 </description>
 </item>
@@ -29,11 +27,11 @@
         If the <oa>sub-command</oa> is not specified, <k>:ignorekeys</k> lists
         all currently affected sites.  The list of ignored pages is
         automatically saved to disc, so it can persist across restarts.
-		在当前 URL 匹配某特定筛选规则时，始终将所有或大部分的键传递给当下的页面或 &liberator.host;。
+		在当前 URL 匹配某特定过滤规则时，始终将所有(或大部分的)键击传递给当前页面或 &liberator.host;。
 		如果 <oa>sub-command</oa> 不曾指定，则 <k>:ignorekeys</k> 列出目下所有被影响的站点。忽略页面的清单将自动保存到硬盘上，这样即便是重启了，规则也仍在。
     </p>
 
-        <h3 tag="ignorekeys-subcommands">Sub commands</h3>
+        <h3 tag="ignorekeys-subcommands">子命令</h3>
 
         <item>
             <tags>ignorekeys-add</tags>
@@ -44,8 +42,8 @@
                     to the list of sites which automatically turn on IGNORE ALL KEYS mode.
                     If <oa>-except</oa> is specified, allow those specified keys to still be handled
                     by &liberator.appname;.
-					添加一个匹配 <a>url-regexp</a> 正则表达式的新 URL 到站点列表中，该列表中的站点将自动开启 IGNORE ALL KEYS 模式。
-					如果 <oa>-except</oa> 不曾指定，则允许所有指定的键交给 &liberator.appname; 处理。
+					添加一个匹配 <a>url-regexp</a> 正则表达规则的新 URL 到站点列表，该列表里的站点将自动开启 IGNORE ALL KEYS 模式。
+					如果指定 <oa>-except</oa>，则允许这些指定的键仍由 &liberator.appname; 接收。
                 </p>
             </description>
         </item>
@@ -55,8 +53,7 @@
             <spec>clear</spec>
             <description>
                 <p>
-                    Clear the list of web sites with ignored keys.
-					清除有忽略按键的网站列表。
+					清除所有网站列表的忽略按键。
                 </p>
             </description>
         </item>
@@ -66,7 +63,6 @@
             <spec>list <oa>filter</oa></spec>
             <description>
                 <p>
-                    List current web sites affected by :ignorekeys (optionally matching <oa>filter</oa>).
 					列出当前所有被 :ignorekeys 影响的网站，<oa>filter</oa> 为可选匹配项。
                 </p>
             </description>
@@ -78,8 +74,7 @@
             <spec>rm <a>url-regexp</a></spec>
             <description>
                 <p>
-                    Remove the regexps matching <a>url-regexp</a> from the list of :ignorekeys.
-					从 :ignorekeys 列表中移除匹配 <a>url-regexp</a> 规则的正则表达式。
+					从 :ignorekeys 列表中移除匹配 <a>url-regexp</a> 规则的网址。
                 </p>
             </description>
         </item>
