@@ -20,5 +20,6 @@
 6. common/locale/en-US/buffer.xml 2013.12.14 done
 7. common/locale/en-US/cmdline.xml 2013.12.14 done
 8. common/locale/en-US/insert.xml 2013.12.14 done
-9. common/locale/en-US/options.xml 2013.12.20 done
+9. common/locale/en-US/options.xml 2013.12.20 99%
 10. vimperator/locale/en-US/options.xml 2013.12.20 done
+11. common/locale/en-US/pattern.xml done

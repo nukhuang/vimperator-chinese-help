@@ -632,7 +632,7 @@
     <description>
         <p>跟随搜索模式的输入，逐个高亮匹配到的内容。</p>
 
-        <note>目前仅支持正方向。</note>
+        <note>目前仅支持向前搜索。</note>
     </description>
 </item>
 

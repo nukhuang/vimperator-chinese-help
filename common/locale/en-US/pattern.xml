@@ -12,20 +12,20 @@
 <toc start="2"/>
 
 <p>
-	&liberator.appname; 提供了一个类似 Vim 的界面来访问 &liberator.host; 的标准文本搜索功能。搜索命令不支持正则表达式，因为 &liberator.host; 不支持原生的正则。而且这很可能永远不会有。
+	&liberator.appname; 提供了一个类似 Vim 的界面来访问 &liberator.host; 标准文本搜索功能。搜索命令不支持正则表达式，因为 &liberator.host; 不提供原生的正则支持。而且这很可能永远不会有。
 </p>
 
 <item>
     <tags>/</tags>
     <spec>/<a>pattern</a>[/]&lt;CR></spec>
     <description>
-        <p>向前搜索第一个符合 <a>pattern</a> 的文本。</p>
+        <p>向前搜索第一个匹配 <a>pattern</a> 的文本。</p>
 
         <p>
-			如果 <str>\c</str> 出现在 pattern 中的任何地方，则表示开启 <o>ignorecase</o> 开关，忽略大小写区别。<str>\C</str> 则表示强制区分大小写。
+			如果 <str>\c</str> 出现在 pattern 中，则表示开启 <o>ignorecase</o> 开关，忽略大小写。<str>\C</str> 强制区分大小写。
         </p>
         <p>
-			如果 <str>\l</str> 出现在 pattern 中则只从链接文本中搜索符合项，类似于开启 <o>linksearch</o> 选项。<str>\L</str> 则强制搜索整个页面。
+			如果 <str>\l</str> 出现在 pattern 中，则只在链接文本中搜索，类似于开启 <o>linksearch</o> 选项。<str>\L</str> 则强制搜索整个页面。
         </p>
     </description>
 </item>
@@ -37,7 +37,7 @@
     <description>
         <p>向后搜索 <a>pattern</a>。</p>
 
-        <p><a>pattern</a> 可以使用与 <k>/</k> 一样的修饰符。</p>
+        <p><k>/</k> 用到的修饰符，这里的 <a>pattern</a> 同样可以用。</p>
 
         <note>渐进式搜索（Incremental searching） 目前只在向前搜索中可用。</note>
     </description>
@@ -48,7 +48,7 @@
     <tags>n</tags>
     <spec>n</spec>
     <description>
-        <p>查找下一个。重复 1（目前还不支持 count） 次最后一个搜索。</p>
+        <p>查找下一个。重复1（目前还不支持 count）次上一项搜索。</p>
     </description>
 </item>
 
@@ -58,7 +58,7 @@
     <spec>N</spec>
     <description>
         <p>
-        	查找前一个。重复 1（目前还不支持 count） 次最后一个搜索。
+        	查找上一个。重复1（目前还不支持 count）次上一项搜索。
         </p>
     </description>
 </item>
@@ -68,7 +68,7 @@
     <tags>*</tags>
     <spec>*</spec>
     <description>
-        <p>搜索鼠标位置下的词下一次出现的位置。</p>
+        <p>向前查找光标位置下的词。</p>
     </description>
 </item>
 
@@ -77,7 +77,7 @@
     <tags>#</tags>
     <spec>#</spec>
     <description>
-        <p>搜索鼠标位置下的词上一次出现的位置。</p>
+        <p>向后查找光标位置下的词。</p>
     </description>
 </item>
 
@@ -87,7 +87,7 @@
     <spec>:noh<oa>lsearch</oa></spec>
     <description>
         <p>
-			不高亮显示搜索词。下一次搜索又或设置 <o>hlsearch</o> 选项后文档高亮显示仍会开启。
+			关闭高亮搜索。下一次搜索，又或开启 <o>hlsearch</o> 选项后，文档高亮仍将启动。
         </p>
     </description>
 </item>
