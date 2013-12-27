@@ -12,9 +12,8 @@
     <spec><oa>count</oa>g@</spec>
     <description>
         <p>
-            Go to the first app tab. Go to the next app tab when already an app tab is selected.
-            And cycles to the first app tab when the last app tab is selected.
-            If <oa>count</oa> is specified go to the <oa>count</oa>th app tab.
+            切换到第一个 app 标签页。如果当前已是 app 标签页，则切换到下一个 app 标签页。如果当前选中的是最末一个 app 标签页，则切换到第一个 app 标签页。
+            <oa>count</oa> 用于切换到第 <oa>count</oa> 个 app 标签页。
         </p>
     </description>
 </item>
@@ -24,8 +23,8 @@
     <spec><oa>count</oa>&lt;C-S-n></spec>
     <description>
         <p>
-            Go to the next group. Cycles to the fist group when the last is selected.
-            If <oa>count</oa> is specified go to the <oa>count</oa>th next group.
+            切换到下一个标签页群组。如果当前是最末一个，则切换到第一个群组。
+            如果指定 <oa>count</oa> 则切换到随后第 <oa>count</oa> 个群组。
         </p>
     </description>
 </item>
@@ -35,15 +34,15 @@
     <spec><oa>count</oa>&lt;C-S-p></spec>
     <description>
         <p>
-            Go to the previous group. Cycles to the fist group when the first is selected.
-            If <oa>count</oa> is specified go to the <oa>count</oa>th previous group.
+            切换到上一个标签页群组。如果当前是第一个，则切换到最末一个群组。
+            如果指定 <oa>count</oa> 则切换到跟前第 <oa>count</oa> 个群组。
         </p>
     </description>
 </item>
 
 <div insertafter=":tabd">
 
-<h2 tag="tabgroups">Tab group management</h2>
+<h2 tag="tabgroups">标签页群组管理</h2>
 
 <item>
     <tags>:tabgroups :panorama</tags>
@@ -51,22 +50,22 @@
     <spec>:panorama <oa>sub-command</oa></spec>
     <description>
         <p>
-            Manage tab groups (also called Panorama in Firefox).
-            If the <oa>sub-command</oa> is not specified, it lists all current tab groups.
+            管理标签页群组(Firefox 下也称 Panorama)。
+            如果未指定 <oa>sub-command</oa>，则列出当前所有的标签页群组。
         </p>
 
-        <h3 tag="tabgroups-subcommands">Sub commands</h3>
+        <h3 tag="tabgroups-subcommands">子命令</h3>
 
         <item>
             <tags>tabgroups-add</tags>
             <spec>add<oa>group</oa><oa>!</oa> <oa>groupName</oa></spec>
             <description>
                 <p>
-                    Create a tab group and switches to the group.
-                    If <oa>groupName</oa> is specified, also sets the name of the group.
+                    创建一个群组并切换过去。
+                    <oa>groupName</oa> 用于设置新群组名。
                 </p>
                 <p>
-                    The selected tab is moved to the group if used with <oa>!</oa>.
+                    <oa>!</oa> 会将当前标签页移到新创建的群组中。
                 </p>
             </description>
         </item>
@@ -76,7 +75,7 @@
             <spec>list</spec>
             <description>
                 <p>
-                    List current tab groups.
+                    列出所有标签页群组。
                 </p>
             </description>
         </item>
@@ -86,11 +85,11 @@
             <spec>pulltab<oa>tab</oa><oa>!</oa> <a>url|index</a></spec>
             <description>
                 <p>
-                    Pull the tab from another group.
-                    The argument <a>url|index</a> is the same as <ex>:buffer</ex>'s argument.
+                    从另一群组中拉取一个标签页。
+                    参数 <a>url|index</a> 跟 <ex>:buffer</ex> 的参数一致。
                 </p>
                 <p>
-                    Also switch to the tab if <oa>!</oa> is specified.
+                    <oa>!</oa> 激活拉取过来的标签页为当前。
                 </p>
             </description>
         </item>
@@ -101,12 +100,10 @@
             <spec>stash<oa>!</oa> <a>groupName</a></spec>
             <description>
                 <p>
-                    Move the current tab to a group named <a>groupName</a>.
+                    推送当前标签页到名称为 <a>groupName</a> 的群组。
                 </p>
                 <p>
-                    If the group does not exist, you can use <oa>!</oa> 
-                    to automatically create a new group named <a>groupName</a> and
-                    move the tab there.
+                    如果群组不存在，则 <oa>!</oa> 可以自动创建一个名为 <a>groupName</a> 的群组，然后推送标签页过去。
                 </p>
             </description>
         </item>
@@ -117,8 +114,8 @@
             <spec>rm<oa>group</oa> <oa>groupName</oa></spec>
             <description>
                 <p>
-                    Close all tabs in the group named <oa>groupName</oa>.
-                    When <oa>groupName</oa> is omitted, close the current group.
+                    关闭 <oa>groupName</oa> 群组内的所有标签页。
+                    如果未指明 <o>groupName</o>，则关闭当前群组。
                 </p>
             </description>
         </item>
@@ -128,10 +125,10 @@
             <spec><oa>count</oa>switch <a>groupName</a></spec>
             <description>
                 <p>
-                    Switch to a group named <a>groupName</a>.
+                    切换到名称为 <a>groupName</a> 的群组。
                 </p>
                 <p>
-                    Switch to <oa>count</oa>th next group if <oa>count</oa> is specified.
+                    <oa>count</oa> 表示切换到随后第 <oa>count</oa> 个群组。
                 </p>
             </description>
         </item>

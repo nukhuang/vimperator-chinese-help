@@ -22,4 +22,6 @@
 8. common/locale/en-US/insert.xml 2013.12.14 done
 9. common/locale/en-US/options.xml 2013.12.20 99%
 10. vimperator/locale/en-US/options.xml 2013.12.20 done
-11. common/locale/en-US/pattern.xml done
+11. common/locale/en-US/pattern.xml 2013.12.21 done
+12. vimperator/locale/en-US/tabs.xml 2013.12.26 done
+13. common/locale/en-US/tabs.xml 2013.12.27 done

@@ -12,10 +12,10 @@
 <toc start="2"/>
 
 <p>
-	标签页可用于同时浏览多个网页。每个标签页仅包含一个 buffer - 并不支持一个标签页内多个 buffer。也因此，许多 buffer 与标签页的命令是可以互换的。
+	标签页用于同时打开多个网页。每个标签页仅含一个 buffer - 不支持一个标签页内含多个 buffer。也因此，许多 buffer 与标签页的命令是可以互用的。
 </p>
 
-<h2 tag="listing-tabs">列出标签页</h2>
+<h2 tag="listing-tabs">显示标签页</h2>
 
 <item>
     <tags>B :tabs :ls :files :buffers</tags>
@@ -23,14 +23,14 @@
     <spec>B</spec>
     <description>
         <p>
-			显示所有符合 <oa>filter</oa> 条件的 buffer （=标签页）。不指定 <oa>filter</oa> 则显示所有标签页。
+			显示匹配 <oa>filter</oa> 的 buffer （=标签页）列表。不指定 <oa>filter</oa> 则显示所有标签页。
         </p>
 
-        <p>一个 buffer 可能使用以下某个指示符标识：</p>
+        <p>buffer 可用以下指示符来标记：</p>
 
         <dl>
             <dt>%</dt><dd>当前 buffer</dd>
-            <dt>#</dt><dd>The alternate buffer for <ex>:e #</ex> and <k name="C-^"/></dd>
+            <dt>#</dt><dd><ex>:e #</ex> 和 <k name="C-^"/> 命令的备选 buffer</dd>
         </dl>
     </description>
 </item>
@@ -40,7 +40,7 @@
     <tags>:keepa :keepalt</tags>
     <spec>:keepa<oa>lt</oa> <a>cmd</a></spec>
     <description>
-        <p>执行一个命令，但是不改变目前的交替 buffer。</p>
+        <p>执行命令，但是不改变目前的备选 buffer。</p>
     </description>
 </item>
 
@@ -52,7 +52,7 @@
     <spec>:tab <a>cmd</a></spec>
     <description>
         <p>
-			执行 <a>cmd</a> 并在新标签页打开结果。只对支持它的命令有效，目前有：
+			执行 <a>cmd</a> 并在新标签页打开结果。目前只支持以下命令：
         </p>
 
         <ul>
@@ -73,7 +73,7 @@
     <spec>:wind<oa>ow</oa> <a>cmd</a></spec>
     <description>
         <p>
-			执行 <a>cmd</a> 并在新窗口打开结果。请查看 <ex>:tab</ex> 了解它所支持的命令。
+			执行 <a>cmd</a> 并在新窗口打开结果。查看 <ex>:tab</ex> 了解它支持的命令。
         </p>
     </description>
 </item>
@@ -84,14 +84,14 @@
     <spec>:<oa>count</oa>tabdu<oa>plicate</oa></spec>
     <description>
         <p>
-			复制当前标签页并转到复制的标签页。如果给定 <oa>count</oa>，则复制 <oa>count</oa> 次标签页。
+			复制当前标签页并切换至复制标签页。如果指定 <oa>count</oa> 值，则复制 <oa>count</oa> 次标签页。
         </p>
     </description>
 </item>
 
 
 <!-- TODO: should the tab commands be moved back here? -->
-请查阅 <t>opening</t> 了解其他的打开新标签页的方法。
+请查阅 <t>opening</t> 了解其他打开新标签页的方法。
 
 <h2 tag="changing-tabs">切换标签页</h2>
 
@@ -100,7 +100,7 @@
     <spec><oa>count</oa>gb</spec>
     <description>
         <p>
-			重复上次的 <ex>:buffer<oa>!</oa></ex> 命令。可以用于在含有相似 URL 或标题的 buffer 间切换。
+			重复上一个 <ex>:buffer<oa>!</oa></ex> 命令。可在含似 URL 或标题的 buffer 间切换。
         </p>
     </description>
 </item>
@@ -111,7 +111,7 @@
     <spec><oa>count</oa>gB</spec>
     <description>
         <p>
-			以相反的方向重复上次的 <ex>:buffer<oa>!</oa></ex> 命令。与 <k>gb</k> 相似，不过是反向进行。
+			重复上一个 <ex>:buffer<oa>!</oa></ex> 命令。与 <k>gb</k> 相似，不过是反向进行。
         </p>
     </description>
 </item>
@@ -122,7 +122,7 @@
     <spec><oa>count</oa>gt</spec>
     <description>
         <p>
-			切换到下一标签页。如果位于最后一个标签页，则循环回第一个标签页。如果指定 <oa>count</oa> 则切换到第 <oa>count</oa> 个标签页。
+			切换到下一标签页。如果位于最后一个标签页，则回到第一个标签页。如果指定 <oa>count</oa> 则切换到第 <oa>count</oa> 个标签页。
         </p>
     </description>
 </item>
@@ -133,7 +133,7 @@
     <spec><oa>count</oa>&lt;C-n></spec>
     <description>
         <p>
-			切换到下一个标签页。如果位于最后一个标签页，则循环回第一个标签页。如果指定 <oa>count</oa> 则切换到第 <oa>count</oa> 个标签页。
+			切换到下一标签页。如果位于最末一个标签页，则回到第一个标签页。如果指定 <oa>count</oa> 则切换到随后第 <oa>count</oa> 个标签页。
         </p>
     </description>
 </item>
@@ -144,7 +144,7 @@
     <spec><oa>count</oa>gT</spec>
     <description>
         <p>
-			切换到上一个标签页。如果位于第一个标签页，则循环回最后一个标签页。如果指定 <oa>count</oa> 则切换到前面第 <oa>count</oa> 个标签页。
+			切换到上一标签页。如果位于第一个标签页，则回到最末一个标签页。如果指定 <oa>count</oa> 则切换到跟前第 <oa>count</oa> 个标签页。
         </p>
     </description>
 </item>
@@ -157,7 +157,7 @@
     <spec>:<oa>count</oa>bn<oa>ext</oa> <oa>count</oa></spec>
     <description>
         <p>
-			切换到下一个或第 <oa>count</oa> 个标签页。如果位于最后一个标签页并且不指定 <oa>count</oa>，则循环回第一个标签页。
+			切换到下一或第 <oa>count</oa> 个标签页。如果当前位于最末一个标签页并且未指定 <oa>count</oa>，则返回第一个标签页。
         </p>
     </description>
 </item>
@@ -172,7 +172,7 @@
     <spec>:<oa>count</oa>bN<oa>ext</oa> <oa>count</oa></spec>
     <description>
         <p>
-			切换到上一个或前面第 <oa>count</oa> 个标签页。将从第一个标签页绕到最后一个。
+			切换到上一或跟前第 <oa>count</oa> 个标签页。可以从第一个标签页绕到最末一个。
         </p>
     </description>
 </item>
@@ -183,7 +183,7 @@
     <spec><oa>count</oa>&lt;C-^></spec>
     <description>
         <p>
-			选择前一个选中的标签页。这就可以在两个标签页间快速切换。如果指明 <oa>count</oa> 值，则切换到第 <oa>count</oa> 个标签页。
+			选择上一个选中的标签页。这就可以在两标签页间快速切换。如果指定 <oa>count</oa> 值，则切换到第 <oa>count</oa> 个标签页。
         </p>
     </description>
 </item>
@@ -195,16 +195,16 @@
     <spec><oa>count</oa>b</spec>
     <description>
         <p>
-			访问 buffer 列表中的某特定 buffer。参数可以是 buffer 的索引值或完整的 URL 地址。如果给定 <oa>count</oa>，则直接访问第 <oa>count</oa> 个 buffer。
+			访问 buffer 列表中的某指定 buffer。参数可以是 buffer 的索引值或完整 URL 地址。如果给定 <oa>count</oa>，则直接访问第 <oa>count</oa> 个 buffer。
         </p>
 
         <p>
-			如果参数即不是完整的 URL 也不是索引值，但仍可唯一定位一个 buffer，则选中该 buffer。如果指定 <oa>!</oa> 则下一个符合条件的 buffer 被选中，哪怕它并不唯一定位出。可以按 <k>b</k> 作为访问该命令的快捷方式。
+			如果参数既不是完整 URL 也不是索引值，但仍能唯一定位一个 buffer，则选中该 buffer。如果指定 <oa>!</oa> 则切换到下一个符合条件的 buffer，哪怕它并不能唯一定位。可以按 <k>b</k> 快捷访问该命令。
         </p>
 
-        <p>如果参数是 <em>#</em>，则交替 buffer 被选中（请看 <k name="C-^"/>）。</p>
+        <p>如果参数是 <em>#</em>，则选择备选 buffer（请看 <k name="C-^"/>）。</p>
 
-        <p>如果不带参数，则当前 buffer 仍是当前。</p>
+        <p>如果不指定参数，则当前 buffer 仍是当前。</p>
     </description>
 </item>
 
@@ -229,7 +229,7 @@
     <spec>:bl<oa>ast</oa></spec>
     <spec>g$</spec>
     <description>
-        <p>切换到最后一个标签页。</p>
+        <p>切换到最末一个标签页。</p>
     </description>
 </item>
 
@@ -239,7 +239,7 @@
     <spec>:tabde<oa>tach</oa></spec>
     <description>
         <p>
-			分享当前标签页，并打开在它自有的窗口中。因为每个窗口中必须包含最少一个标签页，因此并无法分离窗口中的唯一一个标签页。不过可以使用 <ex>:tabduplicate</ex> 先复制标签页然后再调用 <ex>:tabdetach</ex>。
+			分离当前标签页，并在自有窗口中打开。因为每个窗口中至少必须有一个标签页，因此无法分离窗口中唯一一个标签页。不过可以使用 <ex>:tabduplicate</ex> 先复制标签页然后再调用 <ex>:tabdetach</ex>。
         </p>
     </description>
 </item>
@@ -250,7 +250,7 @@
     <spec>:taba<oa>ttach</oa> <a>window-index</a> <oa>tab-index</oa></spec>
     <description>
         <p>
-			将当前标签页附加到另一个窗口。{window-inex} 是一个当前打开的窗口列表的索引值，<oa>tab-index</oa> 则是其他窗口中标签列表的索引值，指示将要附加的标签页的位置。如果这是窗口中的最后一个标签页，则窗口会被关闭。
+			将当前标签页附着到另一窗口。{window-inex} 是一个当前打开窗口的列表索引值，<oa>tab-index</oa> 则是其他窗口中标签的列表索引值，指示将要附着的标签页位置。如果这是窗口中的最后一个标签页，则窗口会被关闭。
         </p>
     </description>
 </item>
@@ -264,7 +264,7 @@
     <spec>:tabm<oa>ove</oa><oa>!</oa> <oa>+N</oa> | <oa>-N</oa></spec>
     <description>
         <p>
-			移动当前标签页到标签页 <oa>N</oa> 后面。如果 <oa>N</oa> 值为 0,则当前标签页移动到最前。没有指定 <oa>N</oa> 的话则当前标签页移到最后。<oa>N</oa> 前也可以设定 "+" 或 "-" 来表示相对位置的移动。加上 <oa>!</oa> 则移动过程会循环首末标签页。	
+			移动当前标签页到标签页 <oa>N</oa> 后面。如果 <oa>N</oa> 值为0,则当前标签页移到最前。未指定 <oa>N</oa> 的话，则当前标签页移到最后。<oa>N</oa> 前也可以设定 "+" 或 "-" 来表示移动的相对位置。<oa>!</oa> 表示移动过程中，首末标签页是可绕的。	
         </p>
     </description>
 </item>
@@ -279,11 +279,11 @@
 
     <description>
         <p>
-			关闭当前标签页。如果指定 <oa>count</oa> 则 <oa>count</oa> 个标签被删除。默认地，删除标签页右侧标签页被选中。
+			关闭当前标签页。如果指定 <oa>count</oa>，则 <oa>count</oa> 个标签被删除。默认地，删除标签页后，右侧标签页被选中。
         </p>
 
         <p>
-			当与 <oa>arg</oa> 一起使用时，移除在域名中包含 <oa>arg</oa> 的所有标签页。<oa>!</oa> 则能强制命令也在整个 URL 及标签页标题中搜索 <oa>arg</oa>，甚至标签页是个 App 标签页也可以关闭。不过请小心使用。	
+			当与 <oa>arg</oa> 一起使用时，移除在域名中含 <oa>arg</oa> 的所有标签页。<oa>!</oa> 则能强制命令在整个 URL 及标签页标题中搜索 <oa>arg</oa>，甚至标签页是 App 标签页也可以关闭。不过请谨慎使用。	
         </p>
         <p>
 			<oa>-select</oa> 选项指定关闭当前标签页后哪个标签页被选定：
@@ -302,7 +302,7 @@
     <spec><oa>count</oa>d</spec>
     <description>
         <p>
-			关闭当前标签页。如果指定 <oa>count</oa> 则 <oa>count</oa> 个标签被删除。默认地，删除标签页右侧标签页被选中。
+			关闭当前标签页。如果指定 <oa>count</oa> 则 <oa>count</oa> 个标签被删除。默认地，删除标签页后，右侧标签页被选中。
         </p>
     </description>
 </item>
@@ -311,7 +311,7 @@
     <tags>D</tags>
     <spec><oa>count</oa>D</spec>
     <description>
-        <p>类似 <k>d</k>，只不过选中的是被删除的标签页左边的标签页。</p>
+        <p>类似 <k>d</k>，只不过标签页被删除后，选中的是左侧标签页。</p>
     </description>
 </item>
 
@@ -320,7 +320,7 @@
     <tags>:tabo :tabonly</tags>
     <spec>:tabo<oa>nly</oa></spec>
     <description>
-        <p>关闭所有其他的标签页。</p>
+        <p>关闭所有其他标签页。</p>
     </description>
 </item>
 
@@ -331,7 +331,7 @@
     <spec><oa>count</oa>u</spec>
     <description>
         <p>
-			撤销关闭标签页。如果给定数字，则撤销的不是最后一个，而是第 <oa>count</oa> 个被关闭的标签页。至于 <oa>url</oa> 则是恢复符合 URL 条件的已关闭标签页。
+			撤销关闭标签页。如果给定数字，则撤销的不是最后一个，而是第 <oa>count</oa> 个被关闭的标签页。至于 <oa>url</oa> 则是重新打开匹配 URL 条件的已关闭标签页。
         </p>
     </description>
 </item>
@@ -342,7 +342,7 @@
     <spec>:undoa<oa>ll</oa></spec>
     <description>
         <p>
-			撤销所有被关闭的标签页。&liberator.host; 最多保存 10 被关闭的标签页，哪怕重启过浏览器。
+			撤销所有被关闭的标签页。&liberator.host; 最多保存10个被关闭的标签页，哪怕你重启过浏览器。
         </p>
     </description>
 </item>
@@ -360,7 +360,7 @@
         </p>
 
         <p>
-            <a>cmd</a> 不要使用添加，移除或重排标签页来改变标签页列表的状态。
+            <a>cmd</a> 不会因为添加，移除或重排标签页而改变标签页列表状态。
         </p>
     </description>
 </item>
