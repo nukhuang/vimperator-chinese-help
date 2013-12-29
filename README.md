@@ -25,3 +25,4 @@
 11. common/locale/en-US/pattern.xml 2013.12.21 done
 12. vimperator/locale/en-US/tabs.xml 2013.12.26 done
 13. common/locale/en-US/tabs.xml 2013.12.27 done
+14. common/locale/en-US/hints.xml 2013.12.29 done
