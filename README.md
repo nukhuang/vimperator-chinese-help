@@ -26,3 +26,8 @@
 12. vimperator/locale/en-US/tabs.xml 2013.12.26 done
 13. common/locale/en-US/tabs.xml 2013.12.27 done
 14. common/locale/en-US/hints.xml 2013.12.29 done
+15. common/locale/en-US/map.xml 2014.01.12 98%
+
+##中英对应的词组
+
+* normal mode - 普通模式

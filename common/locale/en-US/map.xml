@@ -8,34 +8,34 @@
     title="&liberator.appname; 键映射"
     xmlns="http://vimperator.org/namespaces/liberator"
     xmlns:html="http://www.w3.org/1999/xhtml">
-<h1 tag="map">键映射，缩略词，以及用户定义命令</h1>
+<h1 tag="map">键映射，缩略词，及用户定义命令</h1>
 <toc start="2"/>
 
 <h2 tag="key-mapping mapping map macro">键映射</h2>
 
 <p>
-	键映射可以用于重定义标准键绑定或定义新的键绑定。映射可以是一个键，也可以是 <t>key-sequence</t>，即一串的字符。举例：	
+	键映射命令可用于重新定义标准的键绑定，也可以定义全新的键绑定。映射可以是一个键，也可以是用一串字符表示的 <t>键序列</t>。举例：	
 </p>
 <code><ex>:map <k name="F2"/> :echo new Date().toDateString()<k name="CR"/></ex></code>
 <p>
-    则按下 <k name="F2"/> 时，显示当前日期到命令行上。
+    在按下 <k name="F2"/> 后，在命令行位置显示当前日期。
 </p>
 
 <tags>:map-modes</tags>
 
 <p>
-    键可以在四种不同模式中进行映射：
+    键可以在四种不同模式中做映射：
 </p>
 
 <ul>
-    <li>正常模式：普通地浏览网页时</li>
-    <li>可视模式：当使用光标按键选择文本时</li>
-    <li>插入模式：当与网站上的文本域交互时</li>
-    <li>命令行模式：当在 &liberator.appname; 命令行中键入时</li>
+    <li>普通模式：正常浏览网页时</li>
+    <li>可视模式：使用光标按键选择文本时</li>
+    <li>插入模式：与网站文本域交互时</li>
+    <li>命令行模式：在 &liberator.appname; 命令行中键入时</li>
 </ul>
 
 <warning>
-	映射在会话间并不保存，请确保它们写入了你的 &liberator.name;rc 文件中！
+	映射在会话间并不保存，请确保它们写入了你的 &liberator.name;rc 文件里！
 </warning>
 
 <h3 tag=":map-commands">映射命令</h3>
@@ -53,9 +53,7 @@
     <spec>:cm<oa>ap</oa> <a>lhs</a> <a>rhs</a></spec>
     <description>
         <p>
-            Map the <t>key-sequence</t> <a>lhs</a> to <a>rhs</a> for the applicable mode(s). The <a>rhs</a> is
-            remapped, allowing for nested and recursive mappings.
-			在可用的模式中将 <t>键序列</t> <a>lhs</a> 映射到 <a>rhs</a>。<a>rhs</a> 可以重映射，允许嵌套与递归映射。
+			为相应模式映射 <t>键序列</t> <a>lhs</a> 给 <a>rhs</a>。<a>rhs</a> 可以再映射，这就允许嵌套与递归映射。
         </p>
     </description>
 </item>
@@ -74,9 +72,7 @@
     <spec>:cno<oa>remap</oa> <a>lhs</a> <a>rhs</a></spec>
     <description>
         <p>
-            Map the <t>key-sequence</t> <a>lhs</a> to <a>rhs</a> for the applicable mode(s). No remapping of
-            the <a>rhs</a> is performed.
-			在可用的模式中将 <t>键序列</t> <a>lhs</a> 映射到 <a>rhs</a>。<a>rhs</a> 不可以重新映射。
+			为相应模式映射 <t>key-sequence</t> <a>lhs</a> 给 <a>rhs</a>。<a>rhs</a> 不可以再映射。
         </p>
     </description>
 </item>
@@ -94,7 +90,7 @@
     <tags>:cu :cunmap</tags>
     <spec>:cu<oa>nmap</oa> <a>lhs</a> <a>rhs</a></spec>
     <description>
-        <p>在可用模式中移除 <a>lhs</a> 映射。Remove the mapping of <a>lhs</a> for the applicable mode(s).</p>
+        <p>为相应模式移除 <a>lhs</a> 映射。</p>
     </description>
 </item>
 
@@ -112,9 +108,7 @@
     <spec>:cmapc<oa>lear</oa></spec>
     <description>
         <p>
-            Remove all mappings for the applicable mode(s). All user-defined mappings are
-            cleared.
-			在可用模式中移除所有映射。所有的用户定义映射也被清除。
+			为相应模式移除所有映射。所有用户定义的映射也被清除。
         </p>
     </description>
 </item>
@@ -127,7 +121,7 @@
     <spec>:im<oa>ap</oa></spec>
     <spec>:cm<oa>ap</oa></spec>
     <description>
-        <p>列出可用模式的所有映射。List all mappings for the applicable mode(s).</p>
+        <p>为相应模式列出所有的映射。</p>
     </description>
 </item>
 
@@ -144,7 +138,7 @@
     <tags>:cmap_l</tags>
     <spec>:cm<oa>ap</oa> <a>lhs</a></spec>
     <description>
-        <p>列出可用模式中所有以 <a>lhs</a> 开始的映射。List all mappings starting with <a>lhs</a> for the applicable mode(s).</p>
+        <p>为相应模式列出所有以 <a>lhs</a> 开头的映射。</p>
     </description>
 </item>
 
@@ -158,30 +152,26 @@
     When the first argument to one of the mapping commands is <k name="silent"/>,
     <a>rhs</a> is not echoed to the command line, nor, for that matter, anything
     else until the command has completed.
-	如果这些映射命令的第一个参数是 <k name="silent"/>，则 <a>rhs</a> 不显示到命令行上，
+	如果这些映射命令的第一个参数是 <k name="silent"/>，则 <a>rhs</a> 不在命令行上显示，同样的理由，命令结束前的任何东西都不会显示在命令行上。
 </p>
 
 
 <tags>:map-urls</tags>
 
 <p>
-    The mapping becomes an effective mapping only on the page specifed by <a>urlpattern</a>,
-    if <a>-urls=<a>urlpattern</a></a> is given to a mappings command.
-    <a>urlpattern</a> must be regular expression.
-	如果指定 <a>-urls=<a>urlpattern</a></a> 参数，则只有当页面 URL 符合 <a>urlpattern</a> 时这些映射才会有效。<a>urlpattern</a> 必须是个正则表达式。
+	如果映射命令指定 <a>-urls=<a>urlpattern</a></a> 参数，则命令只对匹配 <a>urlpattern</a> 的页面生效。<a>urlpattern</a> 必须是正则表达式。
 </p>
 
 
 <p>
-    Below is an overview of which modes each map command applies to:
-	下列是一个概览，指出映射命令各各应用于哪些模式：
+	以下是一个映射命令可应用的模式的概览：
 </p>
 
 <!-- TODO: table format -->
 
 <code>
-:map   :noremap   :unmap   :mapclear  – 正常模式与可视模式
-:nmap  :nnoremap  :nunmap  :nmapclear – 正常模式
+:map   :noremap   :unmap   :mapclear  – 普通模式与可视模式
+:nmap  :nnoremap  :nunmap  :nmapclear – 普通模式
 :vmap  :vnoremap  :vunmap  :vmapclear – 可视模式
 :imap  :inoremap  :iunmap  :imapclear – 插入模式
 :cmap  :cnoremap  :cunmap  :cmapclear – 命令行模式
@@ -190,28 +180,22 @@
 <h3 tag="key-notation,key-sequence">键序列</h3>
 
 <p>
-    For most keys, the key-sequence is the same as the character you see when you
-    type that key, however there are some exceptions which allow for a much larger
-    number of keys to be used in mappings.
-	对于大部分键来说，键序列即是你按下时所见的字符，不过也有许多例外的键允许在映射中使用。
+	对于大部分键来说，键序列即是你按下时所见的字符，不过也有许多例外，它们同样允许在映射中使用。
 </p>
 
 <ul>
     <li><k name="lt"/>, <k>&lt;</k>, <k name="Space"/>, <k>\ </k> 允许一个字面 &lt; 或空格符。</li>
-    <li>', " and \ must be used to avoid escaping issues when mapping a quote or backslash.</li>
+    <li>在映射引号或反斜杠时，必要 使用 ', " 和 \ 来转义避免问题。</li>
     <li>
         <k name="Left"/> <k name="Right"/> <k name="Up"/>
         <k name="Down"/> <k name="PageUp"/> <k name="PageDown"/>
         <k name="Esc"/> <k name="CR"/> （输入回车键）
     </li>
     <li><k name="CapsLock"/> <k name="NumLock"/> <k name="Ins"/> <k name="Del"/> <k name="Tab"/> <k name="BS"/> （输入退格键）</li>
-    <li><k name="F1"/> 到 <k name="F12"/> 如所料一样工作</li>
+    <li><k name="F1"/> 到 <k name="F12"/> 如你预计一样工作</li>
 </ul>
 
 <p>
-    Most keyboards have some modifiers such as the control, alt or meta keys. In
-    order to create a mapping that uses these keys the correct prefix must be used
-    within the angle brackets.
 	大部分键盘都有比如 control，alt 和 meta 这样的修饰键。为了在映射中使用这些修饰键，必须在尖括号中使用正确的前缀。
 </p>
 
@@ -223,26 +207,18 @@
 </ol>
 
 <p>
-    These prefixes can be combined however you see fit, though you should note that
-    within angle brackets all alphabetic characters are read as lowercase. In order
-    to force them to be uppercase, you must specify the S- prefix as well.
-    Additionally, you should never use the S- prefix with a number or piece of
-    punctuation, even if you require a shift to type that character; doing so will
-    give you a mapping that cannot be typed. With non-character keys, tab and
-    space, the S- modifier works just like C- A- and M-. Some examples may clarify
-    the situation:
-	这些前缀可以任你组合，不过你需要注意，在尖括号中，所有的字母符号都被读成小写的。为了强制它们成大写，你必须额外绑定一个 S- 前缀。另外，千万不要将 S- 与数字或某个标点符号一起使用，即使你需要一个shift 键来键入该字符；这样做会导致映射无法按出。至于非字符的键，tab 及空格，则 S- 修饰键就像 C- A- 和 M- 一样。一些例子可能有助厘清这些情况：
+	这些前缀可以根据需求任你组合，不过要注意，在尖括号中，所有的字母符号都被认为小写。为强制大写它们，你必须额外绑定一个 S- 前缀。另外，千万不要将 S- 与数字或某个标点符号一起使用，即使你需要一个shift 键来键入该字符；这样做会导致无法键入映射。至于非字符的键，tab 及空格，则 S- 修饰键就像 C- A- 和 M- 一样。一些例子可能有助厘清这些情况：
 </p>
 
 <ol>
     <li><k>xc</k>: 按 x，然后按 c</li>
-    <li><k name="C-x">c</k>: 按 control 并按下 x，然后松开 control 按 c</li>
-    <li><k name="C-2"/>: 在按住 control 的时候按下 2</li>
-    <li><k name="C-@"/>: 按住 control 的时候按 @</li>
-    <li><k name="S-Space"/>: 按住 shift 时按下 空格键</li>
-    <li><k name="C-A-j"/>: 按住 control 与 alt 时按下 j</li>
+    <li><k name="C-x">c</k>: 按住 control 并按一下 x，然后松开 control 按 c</li>
+    <li><k name="C-2"/>: 在按住 control 的时候按一下 2</li>
+    <li><k name="C-@"/>: 按住 control 的时候按一下 @</li>
+    <li><k name="S-Space"/>: 按住 shift 时按一下空格键</li>
+    <li><k name="C-A-j"/>: 按住 control 和 alt 时按一下 j</li>
     <li><k name="C-A-J"/>: 与上面的一样</li>
-    <li><k name="C-A-S-j"/>: 按住 control 与 alt 时按下 J</li>
+    <li><k name="C-A-S-j"/>: 按住 control 与 alt 时按一下 J</li>
 </ol>
 
 <h3 tag=":map-special-chars">特殊字符</h3>
@@ -252,9 +228,7 @@
     <spec>&lt;Nop></spec>
     <description>
         <p>
-            Do nothing. This command is useful for disabling a specific mapping.
-            <ex>:map <k name="C-n"/> <k name="Nop"/></ex> will prevent <k name="C-n"/> from doing anything.
-			什么都不做。可以用于禁用某映射。<ex>:map <k name="C-n"/> <k nem="Nop"/></ex> 可以让 <k name="C-n"/> 什么都不做。
+			什么都不做。可用于禁用某映射。<ex>:map <k name="C-n"/> <k nem="Nop"/></ex> 可以让 <k name="C-n"/> 什么都不做。
         </p>
     </description>
 </item>
@@ -265,10 +239,7 @@
     <spec>&lt;CR></spec>
     <description>
         <p>
-            Expand to a line terminator in a key mapping. An Ex command in the <a>rhs</a> of a
-            mapping requires a line terminator after it so that it is executed when the
-            mapping is expanded. <k name="CR"/> should be used for this purpose.
-			在键映射中扩展成行终止符。映射中 <a>rhs</a> 里的 Ex 命令需要跟一个行终止符，这样映射展开时命令才会执行。<k name="CR"/>请只用于这个目的。
+			在键映射中扩展成行终止符。映射中 <a>rhs</a> 里的 Ex 命令需要跟一个行终止符，这样映射展开时命令才会执行。出于这个目的，必须使用 <k name="CR"/>。
         </p>
     </description>
 </item>
@@ -279,16 +250,14 @@
     <spec>&lt;Leader></spec>
     <description>
         <p>
-            Expands to the value of the "mapleader" variable in key mapping. If
-            "mapleader" is unset or empty then <str>\</str> is used. Example:
-			在键映射中扩展成 "mapleader" 的值，如果 "mapleader" 值不曾设或为空，则使用 <str>\</str>。比如：
+			在键映射中扩展成 "mapleader" 变量的值，如果 "mapleader" 值未曾设或为空，则使用 <str>\</str>。比如：
         </p>
         <code><ex>:map <k name="Leader"/>h :echo "Hello"<k name="CR"/></ex></code>
-        <p>同于</p>
+        <p>相当于</p>
         <code><ex>:map \h :echo "Hello"<k name="CR"/></ex></code>
-        <p>不过当</p>
+        <p>但如果设置 mapleader</p>
         <code><ex>let mapleader = ","</ex></code>
-        <p>则又同于</p>
+        <p>则又相当于</p>
         <code><ex>:map ,h :echo "Hello"<k name="CR"/></ex></code>
     </description>
 </item>
@@ -297,30 +266,21 @@
 <h2 tag="abbreviations">缩略词</h2>
 
 <p>
-    &liberator.appname; can automatically replace words identified as abbreviations,
-    which may be used to save typing or to correct commonly misspelled
-    words. An abbreviation can be one of three types that are defined by the
-    types of constituent characters. Whitespace and quotes are non-keyword
-    types, and all other characters are keyword types.
-	&liberator.appname; 可以将识别为缩略词的词自动替换掉，也因此缩略词可以用于减少输入，或者纠正经常拼写错误的单词。根据组成字符的类型可以将缩略词分成三类。空白与引号是非关键词类的，所有其他字符都是关键词类的。
+	&liberator.appname; 可以识别缩略词，将它自动替换，也因此缩略词可用于减少输入，或者纠正经常拼写错误的单词。根据组成的字符的类型我们可以将缩略词分成三类。空白与引号是非关键词一类的，所有其他字符都是关键词一类的。
 </p>
 
 <ol>
-    <li>一个 "full-id" 的缩略词整个都由关键词字符组成（比如，"teh", "msoft"）。</li>
-    <li>一个 "end-id" 的缩略词，结尾是关键词字符，其他的则全是非关键词字符（比如，"'i"）。</li>
-    <li>一个 "non-id" 缩略词以非关键词字符结束，其他的是任何非空白符字符（比如，"def'"）。</li>
+    <li>一个 "full-id" 缩略词全然由关键词类字符组成（比如，"teh", "msoft"）。</li>
+    <li>一个 "end-id" 缩略词，结尾是关键词类字符，其他是非关键词类字符（比如，"'i"）。</li>
+    <li>一个 "non-id" 缩略词以非关键词类字符结束，其他是任意非空白符字符（比如，"def'"）。</li>
 </ol>
 
 <p>
-    Strings that cannot be abbreviations include "a'b" and "a b".
 	字符串如 "a'b" 和 "a b" 是不能作为缩略词的。
 </p>
 
 <p>
-    An abbreviation is recognized when a space, quote character, or
-    <k name="C-]"/> is typed after the abbreviation. There are no default
-    abbreviations, and abbreviations are never recursive.
-	当缩略词后跟着空格，引号符号或 <k name="C-]"/> 时它就被识别出来。没有默认的缩略词，缩略词也无法递归。
+	缩略词后紧跟空格，引号符号或 <k name="C-]"/> 时，它会被识别。默认无缩略词，缩略词也无法递归。
 </p>
 
 <item>
@@ -330,12 +290,7 @@
     <spec>:ab<oa>breviate</oa></spec>
     <description>
         <p>
-            Define an abbreviation. Expand <a>lhs</a> to <a>rhs</a>.
-            If <oa>-javascript</oa> is given and <a>rhs</a> contains JavaScript code,
-            <a>rhs</a> will be expanded to the result of the JavaScript code.
-            If only <a>lhs</a> is given, list all abbreviations that start with <a>lhs</a>.
-            If no arguments are given, list all abbreviations.
-			定义一个缩略词。展开 <a>lhs</a> 成 <a>rhs</a>。如果带 <oa>-javascript</oa> 参数并且 <a>rhs</a> 包含 JavaScript 代码，则 <a>rhs</a> 将展开成 JavaScript 代码的执行结果。如果命令后仅跟着 <a>lhs</a>，则列出所有以 <a>lhs</a> 开头的缩略词。如果没有任何参数，则列出所有缩略词。
+			定义一个缩略词。把 <a>lhs</a> 展开成 <a>rhs</a>。如果指定 <oa>-javascript</oa> 参数并且 <a>rhs</a> 包含 JavaScript 代码，则 <a>rhs</a> 将展开成 JavaScript 代码的执行结果。如果命令后仅指定 <a>lhs</a>，则列出所有以 <a>lhs</a> 开头的缩略词。如果没有给定任何参数，则列出所有缩略词。
         </p>
     </description>
 </item>
@@ -348,9 +303,7 @@
     <spec>:ca<oa>bbrev</oa></spec>
     <description>
         <p>
-            Define an abbreviation for Command-line mode. Same as <ex>:ab<oa>breviate</oa></ex>,
-            but for Command-line mode only.
-			为命令行模式定义一个缩略词。类于 <ex>:ab<oa>breviate</oa></ex>，不过仅在命令行模式下。
+			为命令行模式定义一个缩略词。类于 <ex>:ab<oa>breviate</oa></ex>，不过仅限命令行模式下。
         </p>
     </description>
 </item>
@@ -363,9 +316,7 @@
     <spec>:ia<oa>bbrev</oa></spec>
     <description>
         <p>
-            Define an abbreviation for Insert mode. Same as <ex>:ab<oa>breviate</oa></ex> but
-            for Insert mode only.
-			为插入模式定义一个缩略词。类于 <ex>:ab<oa>breviate</oa></ex>，不过仅在插入模式下。
+			为插入模式定义一个缩略词。类于 <ex>:ab<oa>breviate</oa></ex>，不过仅限插入模式下。
         </p>
     </description>
 </item>
@@ -385,9 +336,7 @@
     <spec>:cuna<oa>bbrev</oa> <a>lhs</a></spec>
     <description>
         <p>
-            Remove an abbreviation for Command-line mode. Same as <ex>:una<oa>bbreviate</oa></ex>,
-            but for Command-line mode only.
-			移除一个命令行下的缩略词。类于 <ex>:una<oa>bbreviate</oa></ex>，只是仅针对命令行模式。
+			移除命令行下的一个缩略词。类于 <ex>:una<oa>bbreviate</oa></ex>，只是仅针对命令行模式。
         </p>
     </description>
 </item>
@@ -398,9 +347,7 @@
     <spec>:iuna<oa>bbrev</oa> <a>lhs</a></spec>
     <description>
         <p>
-            Remove an abbreviation for Insert mode. Same as <ex>:una<oa>bbreviate</oa></ex> but for
-            Insert mode only.
-			移除一个插入模式下的缩略词。类于 <ex>:una<oa>bbreviate</oa></ex>，只是仅针对插入模式。
+			移除插入模式下一个的缩略词。类于 <ex>:una<oa>bbreviate</oa></ex>，只是仅针对插入模式。
         </p>
     </description>
 </item>
@@ -433,13 +380,13 @@
 </item>
 
 
-<h2 tag="user-commands">用户定义命令</h2>
+<h2 tag="user-commands">用户定义的命令</h2>
 
 <item>
     <tags>:com :command</tags>
     <spec>:com<oa>mand</oa></spec>
     <description>
-        <p>列出所有用户定义命令。</p>
+        <p>列出用户定义的所有命令。</p>
     </description>
 </item>
 
@@ -447,7 +394,7 @@
 <item>
     <spec>:com<oa>mand</oa> <a>cmd</a></spec>
     <description>
-        <p>列出所有以 <a>cmd</a> 开头的用户定义命令。</p>
+        <p>列出所有以 <a>cmd</a> 开头的用户定义的命令。</p>
     </description>
 </item>
 
@@ -456,31 +403,22 @@
     <spec>:com<oa>mand</oa><oa>!</oa> <oa><a>attr</a>…</oa> <a>cmd</a> <a>rep</a></spec>
     <description>
         <p>
-            Define a new user command. The name of the command is <a>cmd</a> and its replacement
-            text is <a>rep</a>. The command's attributes are <a>attr</a>. If a command with this name
-            already exists an error is reported unless <oa>!</oa> is specified, in which case the
-            command is redefined. Unlike Vim, the command may start with a lowercase
-            letter.
-			定义一个新的用户命令。命令名称是 <a>cmd</a>，它的替换文本是 <a>rep</a>。而属性则是 <a>attr</a>。如果指定的命令名称已经存在就会报告一个错误，除非使用 <oa>!</oa>，这种情况下命令就被重定义了。不像 Vim，这儿的命令可以以小写字母开头。
+			定义一个新的用户命令。命令名称是 <a>cmd</a>，命令的替换文本是 <a>rep</a>。命令的属性是 <a>attr</a>。如果指定的命令名称已存在就会报告一个错误，除非使用 <oa>!</oa>，这种情况下命令被重新定义。不像 Vim，这儿的命令可以小写字母打头。
         </p>
 
         <p>
-            The command's behavior can be specified by providing attributes when the
-            command is defined.
-			命令定义时，命令的行为可以通过提供属性来指定。
+			定义命令时，命令的行为可以通过属性来指定。
         </p>
 
         <p tag=":command-nargs">
-            Argument handling
+            参数处理
         </p>
 
         <p>
-            By default user commands accept no arguments. This can be changed by specifying
-            the -nargs attribute.
-			默认的，用户命令不接受参数。不过可以通过指定 -nargs 属性来改变。
+			默认情况下，用户命令不接受参数。不过可以通过指定 -nargs 属性来改变。
         </p>
 
-        <p>有效的值为：</p>
+        <p>有效的属性值如下：</p>
 
         <dl>
             <dt>-nargs=0</dt><dd>不接受参数（默认值）</dd>
@@ -491,121 +429,101 @@
         </dl>
 
         <p tag=":command-complete">
-			补齐参数
+			参数补全
         </p>
 
         <p>
-            Completion for arguments to user defined commands is not available by default.
-            Completion can be enabled by specifying one of the following arguments to the
-            -complete option when defining the command.
-			默认情况下，用户定义命令的参数并不支持补齐。不过可以在定义命令时通过指定下列参数给 -complete 选项来开始补齐功能。
+			默认情况下，用户定义的命令的参数不支持补全。不过可以在定义命令时通过指定下列参数给 -complete 选项来启用补全功能。
         </p>
 
         <dl>
-            <dt>altstyle</dt>     <dd>alternate author style sheets</dd>
-            <dt>bookmark</dt>     <dd>bookmarks</dd>
+            <dt>altstyle</dt>     <dd>备选的页面风格</dd>
+            <dt>bookmark</dt>     <dd>书签</dd>
             <dt>buffer</dt>       <dd>buffers</dd>
-            <dt>color</dt>        <dd>color schemes</dd>
-            <dt>command</dt>      <dd>Ex commands</dd>
-            <dt>dialog</dt>       <dd>&liberator.host; dialogs</dd>
-            <dt>dir</dt>          <dd>directories</dd>
-            <dt>environment</dt>  <dd>environment variables</dd>
-            <dt>event</dt>        <dd>autocommand events</dd>
-            <dt>file</dt>         <dd>files</dd>
-            <dt>help</dt>         <dd>help tags</dd>
-            <dt>highlight</dt>    <dd>highlight groups</dd>
-            <dt>history</dt>      <dd>history</dd>
-            <dt>javascript</dt>   <dd>JavaScript expressions</dd>
-            <dt>macro</dt>        <dd>named macros</dd>
-            <dt>mapping</dt>      <dd>user mappings</dd>
+            <dt>color</dt>        <dd>配色方案</dd>
+            <dt>command</dt>      <dd>Ex 命令</dd>
+            <dt>dialog</dt>       <dd>&liberator.host; 对话框</dd>
+            <dt>dir</dt>          <dd>文件夹</dd>
+            <dt>environment</dt>  <dd>环境变量</dd>
+            <dt>event</dt>        <dd>自动命令事件</dd>
+            <dt>file</dt>         <dd>文件</dd>
+            <dt>help</dt>         <dd>帮助标签</dd>
+            <dt>highlight</dt>    <dd>highlight 组</dd>
+            <dt>history</dt>      <dd>历史记录</dd>
+            <dt>javascript</dt>   <dd>JavaScript 表达式</dd>
+            <dt>macro</dt>        <dd>命名的宏</dd>
+            <dt>mapping</dt>      <dd>用户定义的映射</dd>
             <dt>menu</dt>         <dd>menu items</dd>
-            <dt>option</dt>       <dd>&liberator.appname; options</dd>
-            <dt>preference</dt>   <dd>&liberator.host; preferences</dd>
-            <dt>search</dt>       <dd>search engines and keywords</dd>
-            <dt>shellcmd</dt>     <dd>shell commands</dd>
-            <dt>sidebar</dt>      <dd>sidebar panels</dd>
+            <dt>option</dt>       <dd>&liberator.appname; 选项</dd>
+            <dt>preference</dt>   <dd>&liberator.host; 首选项</dd>
+            <dt>search</dt>       <dd>搜索引擎与关键字</dd>
+            <dt>shellcmd</dt>     <dd>shell 命令</dd>
+            <dt>sidebar</dt>      <dd>侧边栏面板</dd>
             <dt>url</dt>          <dd>URLs</dd>
-            <dt>usercommand</dt>  <dd>user commands</dd>
-            <dt>custom,<a>func</a></dt><dd>custom completion, provided by <a>func</a></dd>
+            <dt>usercommand</dt>  <dd>用户定义的命令</dd>
+            <dt>custom,<a>func</a></dt><dd>自定义补全，由 <a>func</a> 提供</dd>
         </dl>
 
         <p tag=":command-completion-custom">
-			自定义补齐
+			自定义补全
         </p>
 
         <p>
-            Custom completion can be provided by specifying the <str>custom,<a>func</a></str> argument to
-            -complete. The <a>func</a> is called with two arguments, a completion context, and
-            an object describing the command's arguments. It should set the context's
-            <str>completions</str> property, or return an object, with <str>items</str> and <str>start</str>
-            properties, describing the completions and where the replacement is to start.
-			通过指定 <str>custome,<a>func</a></str> 参数给 -complete 我们可以提供自定义补齐。
+			通过传递 <str>custom,<a>func</a></str> 参数给 -complete，我们可以自定义补全。<a>func</a> 接收两个参数，一个补全上下文，一个描述命令参数的对象。它会设定上下文的 <str>completions</str> 属性，抑或返回一个包含 <str>items</str> 和 <str>start</str> 属性的对象，前者定义补全的内容，后者设置替换的起始位置。
         </p>
 
         <p>
-            <em>start</em> is the index into the word being completed at which the returned values
-            should be applied and <em>completions</em> is a two dimensional array of the form:
-            [[arg1, description1], [arg2, description2], …]
+            <em>start</em> 指定从哪一单词开始补全返回值，<em>completions</em> 是一个二维数组，形式如下：[[arg1, description1], [arg2, descriptions2], ...]
         </p>
 
         <!-- TODO: add examples -->
 
         <p tag=":command-count">
-            Count handling
+            数值的处理
         </p>
 
         <p>
-            By default user commands do not accept a count. Use the -count attribute if
-            you'd like to have a count passed to your user command. This will then be
-            available for expansion as &lt;count> in the argument.
+            默认情况下，用户命令不接受数值。如果你想传递一个数值给用户命令，请使用 -count 属性。之后参数中的 &lt;count> 形式会被扩展。
         </p>
 
         <p tag=":command-bang">
-            Special cases
+            特殊案例
         </p>
 
         <p>
-            By default a user command does not have a special version, i.e. a version
-            executed with the ! modifier. Providing the -bang attribute will enable this
-            and &lt;bang> will be available in the argument.
+            默认情况下，用户命令不包括特殊版本，即指定 ! 修饰符执行的版本。-bang 属性能够启用该功能，之后在参数中可以使用 &lt;bang>。
         </p>
 
         <p tag=":command-description">
-            Command description
+            命令的描述
         </p>
 
         <p>
-            The command's description text can be set with -description. Otherwise it will
-            default to "User-defined command".
+            命令的描述文本可通过 -description 设置。否则默认为 "User-defined command"。
         </p>
 
         <p tag=":command-replacement-text">
-            Replacement text
+            替换文本
         </p>
 
         <p>
-            The replacement text <a>rep</a> is scanned for escape sequences and these are
-            replaced with values from the user-entered command line. The resulting string
-            is then executed as an Ex command.
+            命令在执行前，命令会检查替换文本 <a>rep</a> 中是否有转义序列，如果有，它们会被命令行中用户输入的值替换，最终的字符串作为 Ex 命令执行。
         </p>
 
-        <p>The valid escape sequences are:</p>
+        <p>有效的转义序列如下：</p>
 
         <dl>
-            <dt>&lt;args></dt> <dd>The command arguments exactly as supplied</dd>
-            <dt>&lt;count></dt><dd>Any supplied count, e.g. 5</dd>
-            <dt>&lt;bang></dt> <dd>! if the command was executed with the ! modifier</dd>
+            <dt>&lt;args></dt> <dd>命令提供的所有参数</dd>
+            <dt>&lt;count></dt><dd>命令提供的任一数值, 比如 5</dd>
+            <dt>&lt;bang></dt> <dd>替换成 !，这样命令会透过 ! 修饰符执行</dd>
             <dt>&lt;lt></dt>
             <dd>
-                A literal '&lt;' character to allow for a literal copy of one
-                of the escape sequences. E.g., &lt;lt>args> will expand to a
-                literal &lt;args>
+                '&lt;' 字符的字面形式允许命令使用任一转义序列的字面拷贝。比如，&lt;lt>args> 会扩展成字面上的 &lt;args>。
             </dd>
         </dl>
 
         <p>
-            "q-" can be prefixed to the escape sequence so that the value is quoted, making
-            it suitable for expression evaluation. Example: &lt;q-args>
+            转义序列前可以插入 "q-"，这样，值会用引号括起，就能够用于表达式执行。示例：&lt;q-args>
         </p>
     </description>
 </item>
@@ -615,7 +533,7 @@
     <tags>:comc :comclear</tags>
     <spec>:comc<oa>lear</oa></spec>
     <description>
-        <p>删除所有用户定义命令。</p>
+        <p>删除用户定义的所有命令。</p>
     </description>
 </item>
 
@@ -624,14 +542,14 @@
     <tags>:delc :delcommand</tags>
     <spec>:delc<oa>ommand</oa> <a>cmd</a></spec>
     <description>
-        <p>删除用户定义命令 <a>cmd</a>。</p>
+        <p>删除用户定义的 <a>cmd</a> 命令。</p>
     </description>
 </item>
 
 
 <h2 tag="command-examples">例子</h2>
 
-<p>增加一个 :Google 命令，可以打开 google 搜索内容：</p>
+<p>增加一个 :Google 命令，用于打开 google 搜索内容：</p>
 <code><ex>:command -nargs=* Google open google &lt;args></ex></code>
 
 <!-- TODO: add decent examples -->
